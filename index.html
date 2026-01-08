@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Carolina Sports Medicine Center | Charlotte, NC</title>
-    <meta name="description" content="A groundbreaking 71,000 sq ft sports medicine facility in Charlotte, NC. Unifying orthopedics, neurosurgery, and elite basketball training under one roof. Opening 2026.">
-    <meta name="keywords" content="Sports Medicine Charlotte, Orthopedics, Slay Basketball, Physical Therapy Charlotte, ACL Rehab, Basketball Training NC">
+    
+    <meta name="description" content="Bringing together World Class medical groups and elite athletes in an independent environment. Integrated human performance, medical care, and financial well-being under one roof.">
+    
+    <meta name="keywords" content="Sports Medicine Charlotte, Neurosurgery, Spine Care, Slay Basketball, Physical Therapy Charlotte, ACL Rehab, Basketball Training NC, Wealth Management for Athletes">
     <meta name="author" content="Carolina Sports Medicine Center">
     
     <meta name="geo.region" content="US-NC" />
@@ -15,8 +17,8 @@
     <meta name="ICBM" content="35.052664, -80.819448" />
 
     <meta property="og:title" content="Carolina Sports Medicine Center | The Future of Performance">
-    <meta property="og:description" content="71,000 sq ft of integrated medical care and elite training in Charlotte, NC.">
-    <meta property="og:image" content="image_0.jpg"> 
+    <meta property="og:description" content="World Class medical groups and athletes brought together in a single, independent environment.">
+    <meta property="og:image" content="logo.png"> 
     <meta property="og:url" content="https://carolinasportsmedcenter.com">
     <meta property="og:type" content="website">
 
@@ -423,7 +425,6 @@
             width: 100%;
             max-width: 1000px;
             margin: 4rem auto 0;
-            /* FIX: Allow overflow so tooltips aren't cut off */
             overflow: visible; 
             background: transparent;
             z-index: 5; 
@@ -458,20 +459,12 @@
             100% { box-shadow: 0 0 0 0 rgba(170, 199, 216, 0); }
         }
 
-        /* TOOLTIP BASE */
         .hotspot .tooltip {
-            position: absolute; 
-            /* Default: Centered Top */
-            bottom: 150%; left: 50%;
+            position: absolute; bottom: 150%; left: 50%;
             transform: translateX(-50%) translateY(10px);
-            
             background: #FFFFFF; color: var(--text-primary);
             padding: 1.25rem; border-radius: var(--radius-md);
-            
-            width: max-content; 
-            max-width: 250px; 
-            min-width: 200px;
-            
+            width: max-content; max-width: 250px; min-width: 200px;
             text-align: center; opacity: 0; visibility: hidden;
             transition: all 0.2s ease;
             box-shadow: 0 10px 40px -5px rgba(0,0,0,0.2); 
@@ -479,47 +472,26 @@
             z-index: 9999; 
         }
 
-        /* TRIANGLE (Default Bottom) */
         .hotspot .tooltip::after {
             content: ''; position: absolute; top: 100%; left: 50%;
             margin-left: -8px; border-width: 8px; border-style: solid;
             border-color: #FFFFFF transparent transparent transparent;
         }
 
-        /* HOVER STATE */
         .hotspot:hover .tooltip, .hotspot:focus .tooltip {
             opacity: 1; visibility: visible;
             transform: translateX(-50%) translateY(0);
         }
 
-        /* --- DIRECTIONAL VARIANTS FOR DESKTOP --- */
-        
-        /* Bottom Variant */
-        .hotspot.tooltip-bottom .tooltip { bottom: auto; top: 150%; transform: translateX(-50%) translateY(-10px); }
-        .hotspot.tooltip-bottom:hover .tooltip { transform: translateX(-50%) translateY(0); }
-        .hotspot.tooltip-bottom .tooltip::after { top: auto; bottom: 100%; border-color: transparent transparent #FFFFFF transparent; }
-
-        /* Left-Side Variant (For pins near left edge) */
-        /* Forces tooltip to spawn to the RIGHT of the pin or center-shift */
-        .pin-left .tooltip {
-            left: 0; transform: translateX(0) translateY(10px);
-            text-align: left;
-        }
-        .pin-left:hover .tooltip { transform: translateX(0) translateY(0); }
-        .pin-left .tooltip::after { left: 20px; } /* Move arrow to left */
-
-        /* Right-Side Variant (For pins near right edge) */
-        .pin-right .tooltip {
-            left: auto; right: 0; transform: translateX(0) translateY(10px);
-            text-align: right;
-        }
-        .pin-right:hover .tooltip { transform: translateX(0) translateY(0); }
-        .pin-right .tooltip::after { left: auto; right: 20px; } /* Move arrow to right */
-
-
         .tooltip h4 { margin-bottom: 0.25rem; color: var(--text-primary); font-size: 1rem; font-weight: 700; }
         .tooltip p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; font-weight: 500; }
 
+        /* Specific Alignment for TM Advisors */
+        .text-center .tooltip { text-align: center !important; }
+
+        .hotspot.tooltip-bottom .tooltip { bottom: auto; top: 150%; transform: translateX(-50%) translateY(-10px); }
+        .hotspot.tooltip-bottom:hover .tooltip { transform: translateX(-50%) translateY(0); }
+        .hotspot.tooltip-bottom .tooltip::after { top: auto; bottom: 100%; border-color: transparent transparent #FFFFFF transparent; }
 
         /* --- 10. PARTNERS GRID --- */
         .partners-grid {
@@ -583,6 +555,19 @@
             .nav-links a { font-size: 0.8rem; }
         }
 
+        /* MACBOOK SHORT SCREEN FIX */
+        @media (max-height: 800px) and (min-width: 1024px) {
+            .hero { padding-top: 6rem; align-items: flex-start; }
+            .hero-text { margin-top: 4rem; }
+            .scroll-down { bottom: 1rem; }
+        }
+
+        /* IPAD/TABLET FIX (Reduce gap) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .hero { padding-top: 8rem; align-items: center; }
+            .hero-text h1 { font-size: 3.5rem; }
+        }
+
         @media (max-width: 768px) {
             .stats-flex { flex-direction: column; gap: 2rem; }
             .divider { display: none; }
@@ -595,45 +580,17 @@
             
             .hotspot { width: 16px; height: 16px; }
             .hotspot i { font-size: 0.7rem; } 
-            
-            /* MOBILE TOOLTIP OVERRIDE: Ensure it's never cut off */
             .hotspot .tooltip { 
                 width: 260px; 
-                padding: 1rem;
-                white-space: normal;
-                
-                /* Force Center relative to pin, but account for screen width in logic if needed */
-                left: 50% !important;
-                right: auto !important;
+                padding: 1rem; 
+                white-space: normal; 
+                /* Override left/right for mobile to keep on screen */
+                left: 50% !important; 
+                right: auto !important; 
                 transform: translateX(-50%) translateY(10px) !important;
             }
-            
-            /* If pin-left or pin-right are used, override them for mobile so they stay centered or shift slightly */
-            .pin-left .tooltip { left: 0 !important; transform: translateY(10px) !important; }
-            .pin-right .tooltip { right: 0 !important; left: auto !important; transform: translateY(10px) !important; }
         }
     </style>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "MedicalOrganization",
-      "name": "Carolina Sports Medicine Center",
-      "alternateName": "CSMC",
-      "url": "https://carolinasportsmedcenter.com",
-      "logo": "https://carolinasportsmedcenter.com/logo.png",
-      "description": "A 71,000 sq ft destination for sports medicine science.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "11415 Golf Links Drive",
-        "addressLocality": "Charlotte",
-        "addressRegion": "NC",
-        "postalCode": "28277",
-        "addressCountry": "US"
-      },
-      "telephone": "+17049267570"
-    }
-    </script>
 </head>
 <body>
     
@@ -728,7 +685,7 @@
 
                     <a href="https://atriumhealth.org/" target="_blank" class="partner-card" data-scroll>
                         <div class="p-icon"><i class="ph-duotone ph-first-aid-kit"></i></div>
-                        <h3>Atrium Health</h3><p>Orthopedics & Trauma</p>
+                        <h3>Atrium Health</h3><p>Health System Partner</p>
                     </a>
 
                     <a href="https://slaybasketball.kinsta.cloud/" target="_blank" class="partner-card" data-scroll>
@@ -771,7 +728,7 @@
                     <div class="vision-card" data-scroll>
                         <div class="vc-icon"><i class="ph-duotone ph-first-aid-kit"></i></div>
                         <h3>Medical Foundation</h3>
-                        <p>We start with the best. Top-tier orthopedic and neurosurgery suites that provide the critical foundation for recovery and health.</p>
+                        <p>We start with the best. Top-tier neurosurgery and spine suites that provide the critical foundation for recovery and health.</p>
                     </div>
 
                     <div class="vision-card" data-scroll>
@@ -800,12 +757,12 @@
                 <div class="map-container" data-scroll>
                     <img src="image_0.jpg" alt="Carolina Sports Medicine Center 3D Render" class="map-image">
                     
-                    <div class="hotspot tooltip-bottom" style="top: 10%; left: 52%;" tabindex="0">
+                    <div class="hotspot tooltip-bottom" style="top: 28%; left: 27%;" tabindex="0">
                         <i class="ph-bold ph-plus"></i>
-                        <div class="tooltip"><h4>Atrium Health</h4><p>Orthopedics & Trauma.</p></div>
+                        <div class="tooltip"><h4>Atrium Health</h4><p>Health System Partner</p></div>
                     </div>
 
-                    <div class="hotspot pin-left" style="top: 27%; left: 30%;" tabindex="0">
+                    <div class="hotspot" style="top: 12%; left: 52%;" tabindex="0">
                         <i class="ph-bold ph-plus"></i>
                         <div class="tooltip"><h4>Carolina NeuroSurgery & Spine Associates</h4><p>Neurosurgery & Spine Associates.</p></div>
                     </div>
@@ -820,7 +777,7 @@
                         <div class="tooltip"><h4>Architech Sports</h4><p>Sports Performance & Physical Therapy.</p></div>
                     </div>
 
-                    <div class="hotspot pin-right" style="top: 27%; left: 65%;" tabindex="0">
+                    <div class="hotspot text-center" style="top: 27%; left: 65%;" tabindex="0">
                         <i class="ph-bold ph-plus"></i>
                         <div class="tooltip"><h4>TM Advisors & Taylor Capital</h4><p>Financial Strategy & Capital Solutions.</p></div>
                     </div>
@@ -904,7 +861,7 @@
 
         sections.forEach(section => navObserver.observe(section));
 
-        // --- 4. MAGNETIC BUTTONS SCRIPT ---
+        // --- 4. MAGNETIC BUTTONS SCRIPT (ADJUSTED INTENSITY) ---
         const magneticBtns = document.querySelectorAll(".magnetic-btn");
 
         magneticBtns.forEach((btn) => {
@@ -913,7 +870,8 @@
                 const x = e.pageX - position.left - position.width / 2;
                 const y = e.pageY - position.top - position.height / 2;
 
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                // Reduced intensity from 0.3 to 0.1 to stop "ducking" feel
+                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
             });
 
             btn.addEventListener("mouseleave", () => {
