@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Carolina Sports Medicine Center | Charlotte, NC</title>
-    <meta name="description" content="Bringing together World Class medical groups and elite athletes in an independent environment. Integrated human performance, medical care, and financial well-being under one roof.">
+    <title>Carolina Sports Medicine Center | Integrated Human Performance</title>
+    <meta name="description" content="A 71,000 sq. ft. destination in Charlotte, NC bridging world-class medical groups like CNSA with elite sports performance partners.">
     <meta name="keywords" content="Sports Medicine Charlotte, Neurosurgery, Spine Care, Slay Basketball, Physical Therapy Charlotte, ACL Rehab, Basketball Training NC, Wealth Management for Athletes">
     <meta name="author" content="Carolina Sports Medicine Center">
     
@@ -14,15 +14,15 @@
     <meta name="geo.position" content="35.052664;-80.819448" /> 
     <meta name="ICBM" content="35.052664, -80.819448" />
 
-    <meta property="og:title" content="Carolina Sports Medicine Center | The Future of Performance">
-    <meta property="og:description" content="World Class medical groups and athletes brought together in a single, independent environment.">
+    <meta property="og:title" content="Carolina Sports Medicine Center | Integrated Human Performance">
+    <meta property="og:description" content="A 71,000 sq. ft. destination in Charlotte, NC bridging world-class medical groups like CNSA with elite sports performance partners.">
     <meta property="og:image" content="csmc_logo_black.jpg"> 
     <meta property="og:url" content="https://carolinasportsmedcenter.com">
     <meta property="og:type" content="website">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
@@ -169,13 +169,32 @@
         }
         @keyframes scrollWheel { 0% { top: 6px; opacity: 1; } 100% { top: 20px; opacity: 0; } }
 
-        /* SECTIONS */
-        .stats-ribbon { background: var(--text-primary); color: #fff; padding: 3rem 0; position: relative; z-index: 10; }
+        /* --- UPDATED STATS SECTION (MASSIVE SCALE) --- */
+        .stats-ribbon { background: var(--text-primary); color: #fff; padding: 4rem 0; position: relative; z-index: 10; }
         .stats-flex { display: flex; justify-content: space-around; align-items: center; }
         .stat { text-align: center; }
-        .stat .num { display: block; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; font-family: var(--font-heading); color: var(--brand-accent); }
-        .stat .desc { font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.8; }
-        .divider { width: 1px; height: 60px; background: rgba(255,255,255,0.2); }
+        
+        .stat .num { 
+            display: block; 
+            font-size: clamp(4rem, 8vw, 8rem); /* Massive, Scalable Size */
+            font-weight: 900; /* Extra Heavy */
+            font-family: var(--font-heading); 
+            color: var(--brand-accent);
+            line-height: 0.9; /* Tight fit like Tungsten/Druk */
+            letter-spacing: -0.04em; /* Condensed feel */
+            text-transform: uppercase;
+        }
+        
+        .stat .desc { 
+            font-size: 1rem; 
+            letter-spacing: 0.15em; 
+            text-transform: uppercase; 
+            opacity: 0.8; 
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .divider { width: 1px; height: 100px; background: rgba(255,255,255,0.2); }
         
         .section-padding { padding: 6rem 0; }
         .bg-darker { background: rgba(0,0,0,0.02); border-top: 1px solid rgba(0,0,0,0.05); }
