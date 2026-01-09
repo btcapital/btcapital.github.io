@@ -127,17 +127,36 @@
         }
         .btn-ghost:hover { background: #fff; }
 
-        /* HERO */
+        /* HERO & HEADINGS */
         .hero { 
             min-height: 100vh; display: flex; align-items: center; position: relative; padding: 8rem 0 4rem; 
         }
-        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        
+        /* New H1 Style for Business Name */
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 5rem); /* Big & Bold */
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        /* New H2 Style for Slogan */
+        .hero-text h2 {
+            font-size: clamp(1.5rem, 3vw, 3rem); /* Slightly smaller */
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* The Shimmer Effect */
         .text-gradient {
             background: linear-gradient(90deg, var(--text-primary) 0%, var(--brand-accent) 50%, var(--text-primary) 100%);
             background-size: 200% auto; -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; animation: gradientMove 6s linear infinite;
         }
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+
         .lead { font-size: clamp(1rem, 1.5vw, 1.25rem); color: var(--text-secondary); max-width: 650px; margin-bottom: 2.5rem; }
         .label-pill {
             display: inline-block; background: rgba(41, 53, 60, 0.05);
@@ -216,7 +235,7 @@
         .hotspot:hover i, .hotspot.active i { color: var(--brand-accent); }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(170, 199, 216, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(170, 199, 216, 0); } 100% { box-shadow: 0 0 0 0 rgba(170, 199, 216, 0); } }
 
-        /* DESKTOP TOOLTIPS (Hidden on Mobile via Media Query) */
+        /* DESKTOP TOOLTIPS */
         .hotspot .tooltip {
             position: absolute; background: #FFFFFF; color: var(--text-primary);
             padding: 1rem; border-radius: var(--radius-md);
@@ -232,7 +251,6 @@
         .tooltip h4 { margin-bottom: 0.25rem; color: var(--text-primary); font-size: 1rem; font-weight: 700; width: 100%; text-align: center; }
         .tooltip p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; font-weight: 500; width: 100%; text-align: center; }
 
-        /* Desktop Positions */
         .pos-bottom .tooltip { top: 150%; left: 50%; transform: translateX(-50%) translateY(-10px); }
         .pos-bottom:hover .tooltip { transform: translateX(-50%) translateY(0); }
         .pos-bottom .tooltip::after { content: ''; position: absolute; bottom: 100%; left: 50%; margin-left: -8px; border-width: 8px; border-style: solid; border-color: transparent transparent #FFFFFF transparent; }
@@ -248,25 +266,16 @@
         .pos-right .tooltip { bottom: 135%; right: 0; left: auto; transform: translateY(10px); }
         .pos-right:hover .tooltip { transform: translateY(0); }
         .pos-right .tooltip::after { content: ''; position: absolute; top: 100%; right: 12px; border-width: 8px; border-style: solid; border-color: #FFFFFF transparent transparent transparent; }
-        .text-center .tooltip { text-align: center !important; }
 
-        /* --- PARTNERS GRID (UPDATED FOR CENTERING) --- */
+        /* PARTNERS GRID */
         .partners-grid { 
-            display: flex;             /* Use Flexbox instead of Grid */
-            flex-wrap: wrap;           /* Allow wrapping */
-            justify-content: center;   /* Center items horizontally */
-            gap: 2rem; 
-            margin-top: 4rem; 
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 4rem; 
         }
         .partner-card {
             background: var(--bg-surface); padding: 2.5rem; border-radius: var(--radius-md);
             transition: var(--transition-fast); position: relative; overflow: hidden;
             display: block; border: 1px solid transparent; cursor: pointer; text-align: center;
-            
-            /* Flex Sizing to mimic grid behavior but allow centering */
-            flex: 1 1 280px;           /* Grow:1, Shrink:1, Basis: 280px */
-            max-width: 350px;          /* Prevent becoming too wide on large screens */
-            width: 100%;               /* Full width on small screens */
+            flex: 1 1 280px; max-width: 350px; width: 100%;
         }
         .partner-card:hover { transform: translateY(-5px); background: #fff; box-shadow: 0 15px 30px -5px rgba(0,0,0,0.05); border-color: var(--brand-accent); }
         .partner-logo-container { height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; width: 100%; }
@@ -289,31 +298,18 @@
 
         /* GLOBAL MOBILE SHEET */
         #mobile-sheet {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            background: white;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
-            z-index: 99999; 
-            transform: translateY(110%); 
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-            text-align: center;
-            display: none; 
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: white; border-top-left-radius: 20px; border-top-right-radius: 20px;
+            padding: 2rem; box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+            z-index: 99999; transform: translateY(110%); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            text-align: center; display: none; 
         }
-        #mobile-sheet.active {
-            transform: translateY(0); 
-        }
+        #mobile-sheet.active { transform: translateY(0); }
         #mobile-sheet h4 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-primary); }
         #mobile-sheet p { font-size: 1rem; color: var(--text-secondary); }
 
-        /* --- MEDIA QUERIES --- */
-        
-        /* Desktop/Laptop */
-        @media (min-width: 769px) {
-            #mobile-sheet { display: none !important; } 
-        }
+        /* MEDIA QUERIES */
+        @media (min-width: 769px) { #mobile-sheet { display: none !important; } }
 
         @media (max-width: 960px) {
             .grid-feature { grid-template-columns: 1fr; gap: 3rem; }
@@ -336,7 +332,6 @@
             }
         }
 
-        /* --- MOBILE SPECIFIC --- */
         @media (max-width: 768px) {
             .stats-flex { flex-direction: column; gap: 2rem; }
             .divider { display: none; }
@@ -345,15 +340,9 @@
             .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
             .section-padding { padding: 4rem 0; }
             .nav-links { gap: 0.8rem; flex-wrap: wrap; justify-content: flex-end; }
-            
-            /* Enable Mobile Sheet */
             #mobile-sheet { display: block; }
-
-            /* Map Pin Adjustments */
             .hotspot { width: 24px; height: 24px; }
             .hotspot i { font-size: 0.8rem; } 
-            
-            /* HIDE INTERNAL TOOLTIPS ON MOBILE (Use Sheet Instead) */
             .hotspot .tooltip { display: none !important; }
         }
     </style>
@@ -390,12 +379,12 @@
         <section class="hero">
             <div class="container hero-layout">
                 <div class="hero-text" data-scroll>
-                    <div class="label-pill">Opening January 2026</div>
-                    <h1>
-                        <span class="line">Integrated</span><br>
-                        <span class="line text-gradient">Human</span><br>
-                        <span class="line">Performance</span>
-                    </h1>
+                    <div class="label-pill">Opening Februray 26, 2026</div>
+                    
+                    <h1 class="text-gradient">Carolina Sports Medicine Center</h1>
+                    
+                    <h2>Integrated Human Performance</h2>
+                    
                     <p class="lead">
                         Bringing together World Class medical groups and elite athletes in an 
                         <strong>independent environment</strong>. A 71,000 sq. ft. destination where care, training, and well-being converge.
