@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP Confirmed | Carolina Sports Medicine Center</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --bg-primary: #E6E6E6;       
+            --bg-surface: #F0F2F5;       
+            --brand-secondary: #768A96;  
+            --brand-accent: #AAC7D8;     
+            --text-primary: #29353C;     
+            --text-secondary: #44576D;   
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --radius-md: 12px;
+            --radius-lg: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        .navbar { padding: 1.5rem 0; position: absolute; top: 0; width: 100%; z-index: 100; }
+        .nav-wrapper { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: center; align-items: center; }
+        .brand-logo { height: 50px; width: auto; }
+
+        .confirmation-section {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            padding: 8rem 2rem 4rem; text-align: center;
+        }
+        
+        .confirmation-card {
+            background: #fff; padding: 4rem; border-radius: var(--radius-lg);
+            max-width: 700px; width: 100%;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .icon-check {
+            font-size: 4rem; color: var(--brand-accent); margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: var(--font-heading); font-weight: 800; font-size: 2.5rem; margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        p.lead {
+            font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2.5rem;
+        }
+
+        .details-box {
+            background: var(--bg-surface); padding: 1.5rem; border-radius: var(--radius-md);
+            margin-bottom: 2.5rem; display: inline-block; width: 100%; text-align: left;
+        }
+        .db-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 0.8rem 0; }
+        .db-row:last-child { border-bottom: none; }
+        .db-label { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; color: var(--brand-secondary); }
+        .db-val { font-weight: 600; color: var(--text-primary); text-align: right; }
+
+        .btn-primary {
+            background-color: var(--brand-accent); color: var(--text-primary);
+            padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700;
+            font-family: var(--font-heading); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: transform 0.1s linear, box-shadow 0.2s ease;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(170, 199, 216, 0.4); }
+
+        footer { background: var(--text-primary); color: #fff; padding: 3rem 0; text-align: center; font-size: 0.8rem; opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <a href="index.html">
+                <img src="logo.png" alt="CSMC Logo" class="brand-logo">
+            </a>
+        </div>
+    </nav>
+
+    <main class="confirmation-section">
+        <div class="confirmation-card">
+            <i class="ph-fill ph-check-circle icon-check"></i>
+            <h1>You're on the list!</h1>
+            <p class="lead">
+                Thank you for RSVPing to the Carolina Sports Medicine Center Grand Opening. 
+                We look forward to celebrating with you.
+            </p>
+
+            <div class="details-box">
+                <div class="db-row">
+                    <span class="db-label">Date</span>
+                    <span class="db-val">Thursday, Feb 26, 2026</span>
+                </div>
+                <div class="db-row">
+                    <span class="db-label">Time</span>
+                    <span class="db-val">5:00 PM &mdash; 6:00 PM</span>
+                </div>
+                <div class="db-row">
+                    <span class="db-label">Location</span>
+                    <span class="db-val">11415 Golf Links Dr, Charlotte</span>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn-primary">Return to Website</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Carolina Sports Medicine Center. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
