@@ -32,7 +32,484 @@
             background-color: var(--black);
             color: var(--text-main);
             font-family: var(--f-body);
+            margin: 0;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE ECOSYSTEM | NBA PRE-DRAFT</title>
+    
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Bebas+Neue&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --red: #C8102E;
+            --black: #050505;
+            --glass-bg: rgba(20, 20, 20, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #FFFFFF;
+            
+            --f-head: 'Bebas Neue', sans-serif;
+            --f-tech: 'Rajdhani', sans-serif;
+            --f-body: 'Inter', sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--black);
+            color: var(--text-main);
+            font-family: var(--f-body);
             margin: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND --- */
+        .bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: #050505; }
+        .bg-grid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), 
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px; opacity: 0.2;
+        }
+        
+        /* Mobile Performance: reduced blur, added will-change */
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3;
+            animation: float 20s infinite alternate ease-in-out;
+            will-change: transform;
+        }
+        .orb-1 { width: 500px; height: 500px; background: var(--red); top: -200px; left: -200px; }
+        .orb-2 { width: 400px; height: 400px; background: var(--red); bottom: -100px; right: -100px; opacity: 0.2; }
+
+        @media (min-width: 768px) {
+            .orb { filter: blur(100px); }
+            .orb-1 { width: 800px; height: 800px; }
+            .orb-2 { width: 600px; height: 600px; }
+        }
+
+        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
+
+        /* --- LAYOUT --- */
+        .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+        /* --- HEADER (MOBILE OPTIMIZED) --- */
+        header { padding: 30px 0 30px; text-align: center; }
+        
+        @media (min-width: 768px) {
+            header { padding: 60px 0 40px; }
+        }
+
+        .ecosystem-logo {
+            height: 50px; width: auto; 
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+        @media (min-width: 768px) {
+            .ecosystem-logo { height: 80px; margin-bottom: 30px; }
+        }
+
+        h1 {
+            font-family: var(--f-head); 
+            font-size: clamp(3.5rem, 10vw, 7.5rem); 
+            line-height: 0.9;
+            margin: 0 0 20px 0; color: #fff; text-transform: uppercase; letter-spacing: 1px;
+            text-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+        h1 span { color: var(--red); }
+
+        .manifesto-text {
+            font-size: clamp(1rem, 3vw, 1.25rem); 
+            color: #ddd; max-width: 800px; 
+            margin: 0 auto 40px;
+            line-height: 1.6; font-weight: 300; 
+            border-left: 4px solid var(--red); padding: 20px 15px; 
+            text-align: left;
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            border-radius: 0 8px 8px 0;
+        }
+        @media (min-width: 768px) {
+            .manifesto-text { padding: 25px; margin-bottom: 60px; }
+        }
+        .manifesto-text strong { color: #fff; font-weight: 600; }
+
+        /* --- LOGO STRIP --- */
+        .logo-row {
+            display: flex; justify-content: center; align-items: center; 
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid var(--glass-border);
+        }
+        .logo-row img { width: auto; filter: brightness(0) invert(1); object-fit: contain; opacity: 0.9; transition: opacity 0.3s; }
+        
+        .logo-cnsa { height: 45px; }
+        .logo-slay { height: 55px; }
+        .logo-archi { height: 45px; }
+        .logo-taylor { height: 45px; }
+
+        @media (min-width: 768px) {
+            .logo-row { gap: 80px; margin-bottom: 80px; padding-bottom: 40px; }
+            .logo-cnsa { height: 75px; }
+            .logo-slay { height: 95px; }
+            .logo-archi { height: 75px; }
+            .logo-taylor { height: 75px; }
+        }
+
+        /* --- ECOSYSTEM GRID --- */
+        .eco-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+
+        @media (min-width: 1024px) {
+            .eco-grid {
+                grid-template-columns: repeat(12, 1fr);
+                grid-auto-rows: minmax(320px, auto);
+                gap: 24px;
+                margin-bottom: 80px;
+            }
+            .tile-medical { grid-column: span 7; }
+            .tile-photo-entrance { grid-column: span 5; }
+            .tile-photo-court { grid-column: span 5; }
+            .tile-training { grid-column: span 7; }
+            .tile-photo-architech { grid-column: span 5; }
+            .tile-recovery { grid-column: span 7; }
+            .tile-finance { grid-column: span 12; }
+        }
+
+        /* --- TILES --- */
+        .tile {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .tile { padding: 35px; }
+        }
+
+        @media (hover: hover) {
+            .tile:hover {
+                transform: translateY(-5px);
+                border-color: rgba(200, 16, 46, 0.5);
+                box-shadow: 0 30px 60px rgba(200, 16, 46, 0.15);
+            }
+        }
+
+        .tile::before {
+            content: ''; position: absolute; top: 0; right: 0;
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 0 30px 30px 0;
+            border-color: transparent var(--red) transparent transparent;
+            opacity: 0.8;
+        }
+        @media (min-width: 768px) {
+            .tile::before { border-width: 0 40px 40px 0; }
+        }
+
+        /* PHOTO TILE */
+        .photo-tile {
+            padding: 0; background: #000; border: 1px solid var(--glass-border);
+            position: relative; 
+            min-height: 250px;
+            overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            .photo-tile { min-height: 300px; }
+        }
+        
+        .photo-label {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.85); color: #fff; padding: 12px 20px;
+            font-family: var(--f-tech); font-size: 0.75rem; letter-spacing: 2px;
+            border-top: 1px solid var(--red); backdrop-filter: blur(5px);
+        }
+
+        /* FINANCE TILE */
+        .finance-inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .finance-inner { grid-template-columns: 1fr 1.5fr; gap: 40px; }
+        }
+
+        .finance-columns {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding-left: 0;
+            border-left: none;
+        }
+        @media (min-width: 600px) {
+             .finance-columns { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (min-width: 768px) {
+            .finance-columns {
+                gap: 30px;
+                border-left: 1px solid rgba(255,255,255,0.1);
+                padding-left: 30px;
+            }
+        }
+
+        .fin-col h4 {
+            font-family: var(--f-tech); color: var(--red); font-size: 1rem; margin-bottom: 10px; letter-spacing: 2px;
+        }
+        .fin-col ul { list-style: none; padding: 0; margin: 0; }
+        .fin-col li {
+            color: #ccc; font-size: 0.9rem; margin-bottom: 8px; position: relative; padding-left: 15px;
+        }
+        .fin-col li::before { content: '›'; color: var(--red); position: absolute; left: 0; }
+
+        /* TYPOGRAPHY */
+        .tile-head {
+            font-family: var(--f-tech); color: var(--red); font-weight: 700; font-size: 0.85rem;
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        
+        .tile h3 {
+            font-family: var(--f-head); 
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            line-height: 0.95; margin: 0 0 15px 0; color: white;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        .tile p {
+            font-size: clamp(0.95rem, 2.5vw, 1.05rem); 
+            color: #ccc; line-height: 1.6; margin-bottom: 0; font-weight: 300;
+        }
+
+        /* SPECS */
+        .spec-list {
+            margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;
+            display: flex; flex-wrap: wrap; gap: 8px;
+        }
+        @media (min-width: 768px) {
+            .spec-list { margin-top: 30px; padding-top: 20px; gap: 10px; }
+        }
+
+        .spec-tag {
+            font-family: var(--f-tech); font-size: 0.7rem; color: #fff; font-weight: 600;
+            background: rgba(255,255,255,0.08); padding: 5px 10px; 
+            text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; gap: 6px;
+        }
+        .spec-tag::before { content: '♦'; color: var(--red); font-size: 10px; }
+
+        /* --- FOOTER --- */
+        footer { 
+            border-top: 1px solid var(--glass-border); padding: 50px 0; text-align: center; 
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+        }
+        @media (min-width: 768px) { footer { padding: 80px 0; } }
+        
+        .site-link {
+            font-family: var(--f-head); font-size: clamp(3rem, 8vw, 5rem); line-height: 1; color: #fff;
+            text-decoration: none; border-bottom: 3px solid var(--red); transition: all 0.3s;
+        }
+        
+        .address-row {
+            margin-top: 20px; font-family: var(--f-tech); color: #888; letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem;
+        }
+        @media (min-width: 768px) {
+            .address-row { margin-top: 30px; letter-spacing: 2px; font-size: 0.9rem; }
+        }
+
+        .facility-footer-grid {
+            margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+        }
+        @media (min-width: 768px) {
+             .facility-footer-grid { margin-top: 50px; gap: 15px; }
+        }
+
+        .f-pill {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa;
+            padding: 6px 14px; border-radius: 50px; font-family: var(--f-body); font-size: 0.75rem; font-weight: 600;
+            display: flex; align-items: center; gap: 6px; transition: all 0.2s;
+        }
+        @media (min-width: 768px) {
+            .f-pill { padding: 8px 18px; font-size: 0.8rem; gap: 8px; }
+        }
+        .f-dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-canvas">
+        <div class="bg-grid"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="wrapper">
+        
+        <header>
+            <img src="logo_combine.png" alt="Carolina Sports Medicine Center" class="ecosystem-logo">
+            
+            <h1>NBA PRE-DRAFT<br><span>COMBINE</span></h1>
+            
+            <div class="manifesto-text">
+                <strong>We are the premier destination for total athletic optimization.</strong> 
+                <br><br>
+                We have centralized the entire athlete lifecycle, including Medical, Training, Recovery, and Financial Management, under one roof. You don't commute to get better; you enter an ecosystem designed to engineer your best self.
+            </div>
+
+            <div class="logo-row">
+                <img src="cnsa_logo_combine.png" alt="CNSA" class="logo-cnsa">
+                <img src="slay_logo_combine.png" alt="Slay" class="logo-slay">
+                <img src="architech_logo_combine.png" alt="Architech" class="logo-archi">
+                <img src="taylor_logo_combine.png" alt="Taylor" class="logo-taylor">
+            </div>
+        </header>
+
+        <div class="eco-grid">
+
+            <div class="tile tile-medical">
+                <div class="tile-head">● Phase 01 // Foundation</div>
+                <h3>ELITE MEDICAL INTELLIGENCE.</h3>
+                <p>
+                    Everything starts with <strong>Carolina NeuroSurgery & Spine Associates (CNSA)</strong>. Before you touch a weight, you undergo a concierge medical evaluation. Bloodwork, diagnostic imaging, and injury risk analysis.
+                </p>
+                <div class="spec-list">
+                    <span class="spec-tag">Concierge MD</span>
+                    <span class="spec-tag">MRI / X-Ray On-Site</span>
+                    <span class="spec-tag">Blood Panel Labs</span>
+                    <span class="spec-tag">Regenerative Med</span>
+                </div>
+            </div>
+
+            <div class="photo-tile tile-photo-entrance">
+                <img src="CSMC_Main_Entrance.jpg" alt="Facility Entrance" style="width:100%; height:100%; object-fit:cover; opacity:0.9;" loading="lazy">
+                <div class="photo-label">FACILITY ENTRANCE</div>
+            </div>
+
+            <div class="photo-tile tile-photo-court">
+                <img src="court_combine.jpg" alt="NBA Courts" style="width:100%; height:100%; object-fit:cover; opacity:0.9;" loading="lazy">
+                <div class="photo-label">2 FULL NBA COURTS + SCIENCE LAB</div>
+            </div>
+
+            <div class="tile tile-training">
+                <div class="tile-head">● Phase 02 // Performance</div>
+                <h3>SCIENCE-BACKED POWER.</h3>
+                <p>
+                    <strong>Architech Sports</strong> builds the engine using <strong>VALD Performance</strong> force plates. <strong>Slay Basketball</strong> refines the chassis with NBA-level skill mechanics.
+                </p>
+                <div class="spec-list">
+                    <span class="spec-tag">VALD Force Plates</span>
+                    <span class="spec-tag">Motion Capture</span>
+                    <span class="spec-tag">NBA Vet Coaching</span>
+                </div>
+            </div>
+
+            <div class="photo-tile tile-photo-architech">
+                <img src="architech_room_combine.jpg" alt="Performance Lab" style="width:100%; height:100%; object-fit:cover; opacity:0.9;" loading="lazy">
+                <div class="photo-label">PERFORMANCE & THERAPY SUITE</div>
+            </div>
+
+            <div class="tile tile-recovery">
+                <div class="tile-head">● Phase 03 // Longevity</div>
+                <h3>SYSTEMIC REGENERATION.</h3>
+                <p>
+                    Recovery isn't just ice. It's a protocol. Based on your medical data, we deploy nutrition scripts, dry needling, and physical therapy to ensure you are ready for the next session.
+                </p>
+                <div class="spec-list">
+                    <span class="spec-tag">Physical Therapy</span>
+                    <span class="spec-tag">Nutrition</span>
+                    <span class="spec-tag">Manual Work</span>
+                </div>
+            </div>
+
+            <div class="tile tile-finance">
+                <div class="finance-inner">
+                    <div>
+                        <div class="tile-head">● Phase 04 // ENTERPRISE</div>
+                        <h3 style="margin-bottom:10px;">YOU ARE A BUSINESS.</h3>
+                        <p style="font-size:1.1rem; color:#fff;">
+                            The average NBA career is 4.5 years. The money has to last 50. <strong>Taylor Capital</strong> builds the infrastructure for your life after the game, starting day one.
+                        </p>
+                        <div style="margin-top:20px;">
+                            <span class="spec-tag" style="border-color:var(--red); color:var(--red); width: fit-content;">LEGACY FOCUSED</span>
+                        </div>
+                    </div>
+                    
+                    <div class="finance-columns">
+                        <div class="fin-col">
+                            <h4>STRUCTURE</h4>
+                            <ul>
+                                <li>LLC Formation</li>
+                                <li>Contract Structuring</li>
+                                <li>Risk Management</li>
+                            </ul>
+                        </div>
+                        <div class="fin-col">
+                            <h4>STRATEGY</h4>
+                            <ul>
+                                <li>Tax Efficiency</li>
+                                <li>Budgeting</li>
+                                <li>Brand Monetization</li>
+                            </ul>
+                        </div>
+                        <div class="fin-col">
+                            <h4>GROWTH</h4>
+                            <ul>
+                                <li>Private Equity</li>
+                                <li>Real Estate</li>
+                                <li>Portfolio Mgmt</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <div style="font-family:var(--f-tech); color:var(--red); letter-spacing:2px; margin-bottom:20px; font-weight:700;">
+                THE FACILITY
+            </div>
+            <a href="https://carolinasmc.com" target="_blank" class="site-link">CAROLINASMC.COM</a>
+            <div class="address-row">
+                11415 Golf Links Drive, Charlotte, NC 28277
+            </div>
+            
+            <div class="facility-footer-grid">
+                <div class="f-pill"><span class="f-dot"></span>2 Full NBA Courts</div>
+                <div class="f-pill"><span class="f-dot"></span>Indoor Turf Track</div>
+                <div class="f-pill"><span class="f-dot"></span>Recovery Lounge</div>
+                <div class="f-pill"><span class="f-dot"></span>Keiser Weight Room</div>
+                <div class="f-pill"><span class="f-dot"></span>Conference Rooms</div>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
@@ -347,3 +824,4 @@
 
 </body>
 </html>
+
