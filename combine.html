@@ -17,9 +17,9 @@
         :root {
             --red: #C8102E;
             --black: #050505;
-            --surface: #0e0e0e;
-            --surface-hover: #141414;
-            --border: rgba(255, 255, 255, 0.12);
+            --glass-bg: rgba(20, 20, 20, 0.65); /* Translucent */
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-highlight: rgba(255, 255, 255, 0.05);
             --text-main: #FFFFFF;
             --text-muted: #A0A0A0;
             
@@ -39,29 +39,30 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- BACKGROUND ENGINEERING --- */
+        /* --- BACKGROUND (Red Glow Engine) --- */
         .bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: #050505; }
         .bg-grid {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
                 linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), 
                 linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 50px 50px; opacity: 0.15;
+            background-size: 60px 60px; opacity: 0.2;
         }
         
-        /* The "Pulse" of the building */
-        .pulse-orb {
-            position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%);
-            width: 800px; height: 800px;
-            background: radial-gradient(circle, rgba(200, 16, 46, 0.15) 0%, transparent 70%);
-            filter: blur(80px); animation: pulse 8s infinite alternate;
+        /* Floating Red Orbs for Glass Effect */
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.3;
+            animation: float 20s infinite alternate ease-in-out;
         }
-        @keyframes pulse { 0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); } 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); } }
+        .orb-1 { width: 800px; height: 800px; background: var(--red); top: -200px; left: -200px; }
+        .orb-2 { width: 600px; height: 600px; background: var(--red); bottom: -100px; right: -100px; opacity: 0.2; }
+
+        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
         /* --- LAYOUT --- */
         .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
-        /* --- HEADER: THE MANIFESTO --- */
+        /* --- HEADER --- */
         header { padding: 80px 0 60px; text-align: center; }
 
         .super-title {
@@ -69,28 +70,31 @@
             font-size: 0.9rem; text-transform: uppercase; margin-bottom: 20px;
             display: flex; align-items: center; justify-content: center; gap: 15px;
         }
-        .super-title::before, .super-title::after { content: ''; height: 1px; width: 40px; background: var(--red); opacity: 0.5; }
+        .super-title::before, .super-title::after { content: ''; height: 1px; width: 30px; background: var(--red); opacity: 0.6; }
 
         h1 {
             font-family: var(--f-head); font-size: clamp(3.5rem, 10vw, 7.5rem); line-height: 0.9;
             margin: 0 0 30px 0; color: #fff; text-transform: uppercase; letter-spacing: 1px;
+            text-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
-        h1 span { color: transparent; -webkit-text-stroke: 1px #fff; }
+        h1 span { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.8); }
 
         .manifesto-text {
-            font-size: 1.25rem; color: #ccc; max-width: 700px; margin: 0 auto 50px;
+            font-size: 1.25rem; color: #ddd; max-width: 700px; margin: 0 auto 50px;
             line-height: 1.6; font-weight: 300; border-left: 3px solid var(--red); padding-left: 20px; text-align: left;
+            /* Glass backing for text readability */
+            background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, transparent 100%);
+            padding: 20px; border-radius: 0 10px 10px 0;
         }
         .manifesto-text strong { color: #fff; font-weight: 600; }
 
-        /* --- LOGO STRIP (Integrated) --- */
+        /* --- LOGO STRIP (Balanced) --- */
         .logo-row {
             display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;
-            margin-bottom: 80px; opacity: 0.9;
+            margin-bottom: 80px;
         }
-        .logo-row img { width: auto; filter: brightness(0) invert(1); object-fit: contain; }
+        .logo-row img { width: auto; filter: brightness(0) invert(1); object-fit: contain; opacity: 0.9; }
         
-        /* LOGO SIZING */
         .logo-csmc { height: 45px; }
         .logo-slay { height: 65px; }
         .logo-archi { height: 55px; }
@@ -104,7 +108,7 @@
             .logo-taylor { height: 70px; }
         }
 
-        /* --- THE ECOSYSTEM GRID (Bento) --- */
+        /* --- BENTO GRID LAYOUT --- */
         .eco-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -115,9 +119,10 @@
         @media (min-width: 1024px) {
             .eco-grid {
                 grid-template-columns: repeat(12, 1fr);
-                grid-template-rows: minmax(300px, auto) minmax(300px, auto);
+                /* Auto rows allow content to dictate height */
+                grid-auto-rows: minmax(320px, auto);
             }
-            /* Complex layout for "All-in-One" feel */
+            /* Layout Map */
             .tile-medical { grid-column: span 8; }
             .tile-photo-1 { grid-column: span 4; }
             .tile-training { grid-column: span 4; }
@@ -125,46 +130,65 @@
             .tile-finance { grid-column: span 4; }
         }
 
-        /* --- TILE DESIGN --- */
+        /* --- GLASS TILES (The "Titanium" Style) --- */
         .tile {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            /* Glassmorphism Magic */
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid rgba(255,255,255,0.2); /* Highlight top edge */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            
             padding: 35px;
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: border-color 0.3s ease;
-        }
-        .tile:hover { border-color: rgba(200, 16, 46, 0.5); }
-
-        /* The "Medical Cross" Accent */
-        .tile::after {
-            content: '+'; position: absolute; top: 20px; right: 20px;
-            font-family: var(--f-tech); color: var(--border); font-size: 20px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        /* PHOTO HOLDERS */
+        .tile:hover {
+            transform: translateY(-5px);
+            border-color: rgba(200, 16, 46, 0.5);
+            box-shadow: 0 30px 60px rgba(200, 16, 46, 0.15);
+        }
+
+        /* Red Corner Accent */
+        .tile::before {
+            content: ''; position: absolute; top: 0; right: 0;
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 0 40px 40px 0;
+            border-color: transparent var(--red) transparent transparent;
+            opacity: 0.8;
+        }
+
+        /* PHOTO TILES */
         .photo-tile {
-            padding: 0; background: #111; border: 1px solid var(--border);
-            position: relative; min-height: 300px;
+            padding: 0; 
+            background: #000; 
+            border: 1px solid var(--glass-border);
+            position: relative;
+            min-height: 300px;
         }
         .photo-placeholder {
             width: 100%; height: 100%;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: radial-gradient(circle, #222 0%, #111 100%);
-            color: #555; font-family: var(--f-tech); letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+            color: #444; font-family: var(--f-tech); letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
         }
-        .photo-placeholder span { font-size: 2rem; margin-bottom: 10px; display: block; color: #333; }
+        .photo-placeholder span { font-size: 2.5rem; margin-bottom: 15px; display: block; color: #333; }
+        
         .photo-label {
-            position: absolute; bottom: 20px; left: 20px;
-            background: rgba(0,0,0,0.8); color: #fff; padding: 5px 15px;
-            font-family: var(--f-tech); font-size: 0.7rem; letter-spacing: 1px;
-            border: 1px solid #333;
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.85); color: #fff; padding: 12px 20px;
+            font-family: var(--f-tech); font-size: 0.75rem; letter-spacing: 2px;
+            border-top: 1px solid var(--red); backdrop-filter: blur(5px);
         }
 
-        /* TYPOGRAPHY IN TILES */
+        /* TYPOGRAPHY */
         .tile-head {
             font-family: var(--f-tech); color: var(--red); font-weight: 700; font-size: 0.85rem;
             letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;
@@ -173,10 +197,11 @@
         
         .tile h3 {
             font-family: var(--f-head); font-size: 2.5rem; line-height: 0.9; margin: 0 0 20px 0; color: white;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
         
         .tile p {
-            font-size: 1rem; color: #aaa; line-height: 1.6; margin-bottom: 0;
+            font-size: 1.05rem; color: #ccc; line-height: 1.6; margin-bottom: 0; font-weight: 300;
         }
 
         /* SPEC LISTS */
@@ -185,23 +210,40 @@
             display: flex; flex-wrap: wrap; gap: 10px;
         }
         .spec-tag {
-            font-family: var(--f-tech); font-size: 0.75rem; color: #ddd; 
-            background: rgba(255,255,255,0.05); padding: 6px 12px; 
-            text-transform: uppercase; letter-spacing: 1px; border-radius: 2px;
+            font-family: var(--f-tech); font-size: 0.75rem; color: #fff; font-weight: 600;
+            background: rgba(255,255,255,0.08); padding: 6px 12px; 
+            text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; gap: 6px;
         }
+        .spec-tag::before { content: '♦'; color: var(--red); font-size: 10px; }
 
         /* --- FOOTER --- */
-        footer { border-top: 1px solid var(--border); padding: 80px 0; text-align: center; }
+        footer { 
+            border-top: 1px solid var(--glass-border); padding: 80px 0; text-align: center; 
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+        }
         
         .site-link {
-            font-family: var(--f-head); font-size: 4rem; line-height: 1; color: #fff;
-            text-decoration: none; border-bottom: 2px solid var(--red); transition: all 0.3s;
+            font-family: var(--f-head); font-size: clamp(3rem, 8vw, 5rem); line-height: 1; color: #fff;
+            text-decoration: none; border-bottom: 3px solid var(--red); transition: all 0.3s;
         }
-        .site-link:hover { color: var(--red); border-color: #fff; }
+        .site-link:hover { color: var(--red); border-color: #fff; text-shadow: 0 0 30px rgba(200, 16, 46, 0.6); }
         
         .address-row {
-            margin-top: 30px; font-family: var(--f-tech); color: #666; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;
+            margin-top: 30px; font-family: var(--f-tech); color: #888; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;
         }
+
+        /* Facility Tags Footer */
+        .facility-footer-grid {
+            margin-top: 50px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
+        }
+        .f-pill {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa;
+            padding: 8px 18px; border-radius: 50px; font-family: var(--f-body); font-size: 0.8rem; font-weight: 600;
+            display: flex; align-items: center; gap: 8px; transition: all 0.2s;
+        }
+        .f-pill:hover { border-color: var(--red); color: #fff; background: rgba(200, 16, 46, 0.1); }
+        .f-dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
 
     </style>
 </head>
@@ -209,7 +251,8 @@
 
     <div class="bg-canvas">
         <div class="bg-grid"></div>
-        <div class="pulse-orb"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
     </div>
 
     <div class="wrapper">
@@ -249,7 +292,7 @@
             </div>
 
             <div class="photo-tile tile-photo-1">
-                <div class="photo-placeholder"><span>📷</span> INSERT MRI / LAB PHOTO</div>
+                <div class="photo-placeholder"><span>📷</span> INSERT FACILITY PHOTO</div>
                 <div class="photo-label">CNSA MEDICAL SUITE</div>
             </div>
 
@@ -302,11 +345,12 @@
                 11415 Golf Links Drive, Charlotte, NC 28277
             </div>
             
-            <div style="margin-top:50px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-                <span class="spec-tag" style="border-color:#333; color:#666;">2 Full NBA Courts</span>
-                <span class="spec-tag" style="border-color:#333; color:#666;">Indoor Turf Track</span>
-                <span class="spec-tag" style="border-color:#333; color:#666;">Recovery Lounge</span>
-                <span class="spec-tag" style="border-color:#333; color:#666;">Keiser Weight Room</span>
+            <div class="facility-footer-grid">
+                <div class="f-pill"><span class="f-dot"></span>2 Full NBA Courts</div>
+                <div class="f-pill"><span class="f-dot"></span>Indoor Turf Track</div>
+                <div class="f-pill"><span class="f-dot"></span>Recovery Lounge</div>
+                <div class="f-pill"><span class="f-dot"></span>Keiser Weight Room</div>
+                <div class="f-pill"><span class="f-dot"></span>Conference Rooms</div>
             </div>
         </footer>
 
