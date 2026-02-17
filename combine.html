@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBA PRE-DRAFT | TITANIUM RED</title>
+    <title>THE ECOSYSTEM | NBA PRE-DRAFT</title>
     
     <meta name="theme-color" content="#050505">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,16 +11,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Bebas+Neue&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Bebas+Neue&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --red: #C8102E; /* READY RED */
+            --red: #C8102E;
             --black: #050505;
-            --card-bg: linear-gradient(145deg, #0e0e0e 0%, #050505 100%);
-            --border: rgba(255, 255, 255, 0.1);
+            --surface: #0e0e0e;
+            --surface-hover: #141414;
+            --border: rgba(255, 255, 255, 0.12);
             --text-main: #FFFFFF;
-            --text-muted: #B0B0B0;
+            --text-muted: #A0A0A0;
             
             --f-head: 'Bebas Neue', sans-serif;
             --f-tech: 'Rajdhani', sans-serif;
@@ -38,235 +39,169 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ANIMATIONS --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate-in {
-            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-            opacity: 0; /* Start hidden */
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.3s; }
-        .delay-3 { animation-delay: 0.5s; }
-
-        /* --- BACKGROUND --- */
+        /* --- BACKGROUND ENGINEERING --- */
         .bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: #050505; }
         .bg-grid {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            opacity: 0.2;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), 
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px; opacity: 0.15;
         }
-        .orb {
-            position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.25;
-            animation: float 20s infinite alternate ease-in-out;
+        
+        /* The "Pulse" of the building */
+        .pulse-orb {
+            position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(200, 16, 46, 0.15) 0%, transparent 70%);
+            filter: blur(80px); animation: pulse 8s infinite alternate;
         }
-        .orb-1 { width: 700px; height: 700px; background: var(--red); top: -300px; left: 50%; transform: translateX(-50%); }
-
-        @keyframes float { 0% { transform: translateX(-50%) translateY(0); } 100% { transform: translateX(-50%) translateY(30px); } }
+        @keyframes pulse { 0% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.9); } 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); } }
 
         /* --- LAYOUT --- */
-        .wrapper { max-width: 1000px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+        .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
-        /* --- HEADER --- */
-        header { text-align: center; padding: 60px 0 20px; }
+        /* --- HEADER: THE MANIFESTO --- */
+        header { padding: 80px 0 60px; text-align: center; }
 
-        .status-pill {
-            display: inline-block; padding: 6px 24px; border-radius: 50px;
-            background: rgba(200, 16, 46, 0.1); border: 1px solid var(--red);
-            color: var(--red); font-family: var(--f-tech); font-weight: 700; font-size: 0.8rem;
-            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;
+        .super-title {
+            font-family: var(--f-tech); color: var(--red); letter-spacing: 4px; font-weight: 700;
+            font-size: 0.9rem; text-transform: uppercase; margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center; gap: 15px;
         }
+        .super-title::before, .super-title::after { content: ''; height: 1px; width: 40px; background: var(--red); opacity: 0.5; }
 
-        h1 { display: flex; flex-direction: column; align-items: center; line-height: 0.85; margin-bottom: 30px; }
-        .title-top {
-            font-family: var(--f-head); font-size: clamp(4rem, 14vw, 9rem); color: #fff;
-            letter-spacing: 1px; z-index: 2; text-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        h1 {
+            font-family: var(--f-head); font-size: clamp(3.5rem, 10vw, 7.5rem); line-height: 0.9;
+            margin: 0 0 30px 0; color: #fff; text-transform: uppercase; letter-spacing: 1px;
         }
-        .title-bottom {
-            font-family: var(--f-head); font-size: clamp(4rem, 14vw, 9rem);
-            color: transparent; -webkit-text-stroke: 2px #fff; letter-spacing: 1px; opacity: 0.5; margin-top: 0px;
-        }
+        h1 span { color: transparent; -webkit-text-stroke: 1px #fff; }
 
-        /* SLOGAN */
-        .slogan-block {
-            margin-top: 20px; padding: 20px 0;
-            border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+        .manifesto-text {
+            font-size: 1.25rem; color: #ccc; max-width: 700px; margin: 0 auto 50px;
+            line-height: 1.6; font-weight: 300; border-left: 3px solid var(--red); padding-left: 20px; text-align: left;
         }
-        .slogan-main {
-            font-family: var(--f-tech); font-size: clamp(1rem, 4vw, 1.3rem); letter-spacing: 3px;
-            color: #eee; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;
-        }
-        .slogan-sub {
-            font-family: var(--f-tech); font-size: 0.85rem; letter-spacing: 2px;
-            color: var(--red); text-transform: uppercase; font-weight: 700;
-            display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px;
-        }
-        .diamond { width: 6px; height: 6px; background: var(--red); transform: rotate(45deg); display: inline-block; }
-        .location-text {
-            font-family: var(--f-tech); font-size: 0.8rem; color: #FFFFFF;
-            letter-spacing: 1px; text-transform: uppercase; font-weight: 600; opacity: 1;
-        }
+        .manifesto-text strong { color: #fff; font-weight: 600; }
 
-        /* --- LOGO STRIP --- */
-        .logo-container {
-            width: 100vw; margin-left: calc(-50vw + 50%);
-            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
-            padding: 30px 0 50px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 50px;
+        /* --- LOGO STRIP (Integrated) --- */
+        .logo-row {
+            display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;
+            margin-bottom: 80px; opacity: 0.9;
         }
-        .partner-row {
-            max-width: 1200px; margin: 0 auto; display: flex; justify-content: center;
-            align-items: center; gap: 30px; flex-wrap: wrap; padding: 0 20px;
-        }
-        .partner-row img { width: auto; filter: brightness(0) invert(1); opacity: 1; object-fit: contain; }
-
-        /* Logo Sizing */
-        .logo-csmc { height: 40px; }
-        .logo-slay { height: 60px; }
-        .logo-archi { height: 50px; }
-        .logo-taylor { height: 50px; }
+        .logo-row img { width: auto; filter: brightness(0) invert(1); object-fit: contain; }
+        
+        /* LOGO SIZING */
+        .logo-csmc { height: 45px; }
+        .logo-slay { height: 65px; }
+        .logo-archi { height: 55px; }
+        .logo-taylor { height: 55px; }
 
         @media (min-width: 768px) {
-            .partner-row { gap: 60px; }
-            .logo-csmc { height: 65px; }
+            .logo-row { gap: 70px; }
+            .logo-csmc { height: 60px; }
             .logo-slay { height: 85px; }
             .logo-archi { height: 70px; }
             .logo-taylor { height: 70px; }
         }
 
-        /* --- THE "RED LINE" CARDS (High Impact) --- */
-        .red-line-card {
-            background: var(--card-bg);
-            /* The 8-Second Visual Anchor: */
-            border-left: 4px solid var(--red); 
-            border-top: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 40px;
-            margin-bottom: 40px;
+        /* --- THE ECOSYSTEM GRID (Bento) --- */
+        .eco-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        @media (min-width: 1024px) {
+            .eco-grid {
+                grid-template-columns: repeat(12, 1fr);
+                grid-template-rows: minmax(300px, auto) minmax(300px, auto);
+            }
+            /* Complex layout for "All-in-One" feel */
+            .tile-medical { grid-column: span 8; }
+            .tile-photo-1 { grid-column: span 4; }
+            .tile-training { grid-column: span 4; }
+            .tile-recovery { grid-column: span 4; }
+            .tile-finance { grid-column: span 4; }
+        }
+
+        /* --- TILE DESIGN --- */
+        .tile {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 35px;
             position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease;
-        }
-
-        .red-line-card:hover {
-            transform: translateX(5px); /* Subtle interaction cue */
-            background: linear-gradient(145deg, #121212 0%, #080808 100%);
-        }
-
-        .phase-label {
-            font-family: var(--f-tech);
-            color: var(--red);
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        h2 {
-            font-family: var(--f-head);
-            font-size: 4rem; /* MASSIVE for scanning */
-            margin: 0 0 20px 0;
-            line-height: 0.85;
-            color: #fff;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .intro-text {
-            font-size: 1.15rem;
-            color: #d0d0d0; /* Higher contrast for readability */
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-weight: 300;
-            max-width: 65ch; /* Optimal reading length */
-        }
-
-        /* --- TECH SPECS (Bottom Row) --- */
-        .tag-row {
+            overflow: hidden;
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.3s ease;
+        }
+        .tile:hover { border-color: rgba(200, 16, 46, 0.5); }
+
+        /* The "Medical Cross" Accent */
+        .tile::after {
+            content: '+'; position: absolute; top: 20px; right: 20px;
+            font-family: var(--f-tech); color: var(--border); font-size: 20px;
         }
 
-        .diamond-tag {
-            font-family: var(--f-tech);
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: color 0.2s;
+        /* PHOTO HOLDERS */
+        .photo-tile {
+            padding: 0; background: #111; border: 1px solid var(--border);
+            position: relative; min-height: 300px;
+        }
+        .photo-placeholder {
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: radial-gradient(circle, #222 0%, #111 100%);
+            color: #555; font-family: var(--f-tech); letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+        }
+        .photo-placeholder span { font-size: 2rem; margin-bottom: 10px; display: block; color: #333; }
+        .photo-label {
+            position: absolute; bottom: 20px; left: 20px;
+            background: rgba(0,0,0,0.8); color: #fff; padding: 5px 15px;
+            font-family: var(--f-tech); font-size: 0.7rem; letter-spacing: 1px;
+            border: 1px solid #333;
+        }
+
+        /* TYPOGRAPHY IN TILES */
+        .tile-head {
+            font-family: var(--f-tech); color: var(--red); font-weight: 700; font-size: 0.85rem;
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;
+            display: flex; align-items: center; gap: 10px;
         }
         
-        .red-line-card:hover .diamond-tag { color: #fff; } /* Light up on hover */
-
-        .diamond-tag::before { 
-            content: '♦'; 
-            color: var(--red); 
-            font-size: 10px; 
+        .tile h3 {
+            font-family: var(--f-head); font-size: 2.5rem; line-height: 0.9; margin: 0 0 20px 0; color: white;
+        }
+        
+        .tile p {
+            font-size: 1rem; color: #aaa; line-height: 1.6; margin-bottom: 0;
         }
 
-        /* PHASE 3 SPLIT */
-        .split-section { display: grid; gap: 50px; margin-top: 40px; }
-        .partner-block h3 { font-family: var(--f-head); font-size: 2.8rem; margin: 0 0 10px 0; color: #fff; }
-        .partner-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
-        
-        @media (min-width: 768px) { .split-section { grid-template-columns: 1fr 1fr; gap: 80px; } }
+        /* SPEC LISTS */
+        .spec-list {
+            margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;
+            display: flex; flex-wrap: wrap; gap: 10px;
+        }
+        .spec-tag {
+            font-family: var(--f-tech); font-size: 0.75rem; color: #ddd; 
+            background: rgba(255,255,255,0.05); padding: 6px 12px; 
+            text-transform: uppercase; letter-spacing: 1px; border-radius: 2px;
+        }
 
         /* --- FOOTER --- */
-        .footer-section { margin-top: 100px; padding-bottom: 60px; text-align: center; }
-        .facilities-strip {
-            background: #0e0e0e; border-top: 1px solid #222; border-bottom: 1px solid #222;
-            padding: 30px 20px; margin-bottom: 60px; width: 100vw; margin-left: calc(-50vw + 50%);
+        footer { border-top: 1px solid var(--border); padding: 80px 0; text-align: center; }
+        
+        .site-link {
+            font-family: var(--f-head); font-size: 4rem; line-height: 1; color: #fff;
+            text-decoration: none; border-bottom: 2px solid var(--red); transition: all 0.3s;
         }
-        .facilities-head {
-            font-family: var(--f-tech); font-size: 0.85rem; letter-spacing: 3px;
-            color: var(--red); text-transform: uppercase; font-weight: 700; margin-bottom: 25px;
+        .site-link:hover { color: var(--red); border-color: #fff; }
+        
+        .address-row {
+            margin-top: 30px; font-family: var(--f-tech); color: #666; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;
         }
-        .facilities-grid {
-            display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; max-width: 1000px; margin: 0 auto;
-        }
-        .f-pill {
-            background: #151515; border: 1px solid #333; color: #999; padding: 10px 20px;
-            border-radius: 50px; font-family: var(--f-body); font-size: 0.85rem; font-weight: 600;
-            display: flex; align-items: center; gap: 10px; transition: all 0.2s;
-        }
-        .f-pill:hover { border-color: var(--red); color: #fff; }
-        .f-dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
-
-        .slogan-huge {
-            font-family: var(--f-head); font-size: clamp(3.5rem, 9vw, 6rem); line-height: 0.9;
-            color: #fff; margin-bottom: 10px;
-        }
-        .slogan-huge span { color: var(--red); }
-
-        .btn-glitch {
-            display: inline-block; background: transparent; border: 2px solid var(--red); color: var(--red);
-            font-family: var(--f-head); font-size: 2rem; padding: 20px 60px; text-decoration: none;
-            text-transform: uppercase; letter-spacing: 2px; margin: 40px 0; transition: all 0.2s;
-        }
-        .btn-glitch:hover { background: var(--red); color: white; box-shadow: 0 0 40px rgba(200, 16, 46, 0.4); }
-
-        .contact-info {
-            font-family: var(--f-tech); color: #666; font-size: 0.9rem; letter-spacing: 1px;
-            text-transform: uppercase; line-height: 1.8;
-        }
-        .contact-info a { color: #888; text-decoration: none; border-bottom: 1px solid #333; transition: color 0.2s; }
-        .contact-info a:hover { color: var(--red); border-color: var(--red); }
 
     </style>
 </head>
@@ -274,131 +209,108 @@
 
     <div class="bg-canvas">
         <div class="bg-grid"></div>
-        <div class="orb orb-1"></div>
+        <div class="pulse-orb"></div>
     </div>
 
     <div class="wrapper">
-
-        <header class="animate-in delay-1">
-            <div class="status-pill">● Invite Only // 20 Spots</div>
+        
+        <header>
+            <div class="super-title">Invite Only // 20 Spots</div>
+            <h1>NBA PRE-DRAFT<br><span>ECOSYSTEM</span></h1>
             
-            <h1>
-                <span class="title-top">NBA PRE-DRAFT</span>
-                <span class="title-bottom">COMBINE</span>
-            </h1>
+            <div class="manifesto-text">
+                <strong>This is not a gym.</strong> It is a comprehensive performance laboratory. 
+                <br><br>
+                We have centralized the entire athlete lifecycle—Medical, Training, Recovery, and Financial Management—under one roof. You don't commute to get better. You live in the ecosystem.
+            </div>
 
-            <div class="slogan-block">
-                <div class="slogan-main">Evaluate. Optimize. Train. Dominate.</div>
-                <div class="slogan-sub">
-                    <span class="diamond"></span> One Building. Peak Performance. <span class="diamond"></span>
-                </div>
-                <div class="location-text">
-                    Carolina Sports Medicine Center • Charlotte, NC
-                </div>
+            <div class="logo-row">
+                <img src="logo_combine.png" alt="CNSA" class="logo-csmc">
+                <img src="slay_logo_combine.png" alt="Slay" class="logo-slay">
+                <img src="architech_logo_combine.png" alt="Architech" class="logo-archi">
+                <img src="taylor_logo_combine.png" alt="Taylor" class="logo-taylor">
             </div>
         </header>
 
-    </div>
+        <div class="eco-grid">
 
-    <div class="logo-container animate-in delay-2">
-        <div class="partner-row">
-            <img src="logo_combine.png" alt="CNSA" class="logo-csmc" loading="lazy">
-            <img src="slay_logo_combine.png" alt="Slay" class="logo-slay" loading="lazy">
-            <img src="architech_logo_combine.png" alt="Architech" class="logo-archi" loading="lazy">
-            <img src="taylor_logo_combine.png" alt="Taylor" class="logo-taylor" loading="lazy">
-        </div>
-    </div>
-
-    <div class="wrapper">
-        <article class="red-line-card animate-in delay-3">
-            <span class="phase-label">Phase 1 // Comprehensive Medical Evaluations</span>
-            <h2>KNOW YOUR BODY.</h2>
-            <p class="intro-text">
-                Every athlete begins with a complete medical evaluation through <strong>Carolina NeuroSurgery & Spine Associates</strong>. A concierge physician conducts a full health profile with bloodwork, diagnostic imaging, injury assessment, and baseline metrics. Nothing gets trained until everything gets tested.
-            </p>
-            <div class="tag-row">
-                <span class="diamond-tag">DIAGNOSTICS</span>
-                <span class="diamond-tag">BLOOD-PANEL</span>
-                <span class="diamond-tag">IMAGING</span>
-                <span class="diamond-tag">RISK-ANALYSIS</span>
-                <span class="diamond-tag">CNSA-LABS</span>
-            </div>
-        </article>
-
-        <article class="red-line-card animate-in delay-3">
-            <span class="phase-label">Phase 2 // Health Optimization</span>
-            <h2>CUSTOMIZE.</h2>
-            <p class="intro-text">
-                Based on Phase 1 results, CNSA builds a personalized medical program for each athlete. Bloodwork insights drive nutrition protocols. Imaging results guide treatment plans. Regenerative medicine addresses anything holding the body back. The athlete's health is optimized before a single drill begins.
-            </p>
-            <div class="tag-row">
-                <span class="diamond-tag">REGENERATION</span>
-                <span class="diamond-tag">NUTRITION-SCRIPT</span>
-                <span class="diamond-tag">RECOVERY-MODALITIES</span>
-                <span class="diamond-tag">BIO-HACKING</span>
-            </div>
-        </article>
-
-        <article class="red-line-card animate-in delay-3">
-            <span class="phase-label">Phase 3 // Daily Training Program</span>
-            <h2>DAILY EXECUTION.</h2>
-            <p class="intro-text">
-                Two elite systems running in parallel. Skill development on the court, explosive power in the lab.
-            </p>
-
-            <div class="split-section">
-                <div class="partner-block">
-                    <h3>SLAY BASKETBALL</h3>
-                    <p class="partner-desc">
-                        Slay Basketball, founded by NBA veteran Tamar Slay, runs daily individual on-court workouts. Ball handling, shooting, footwork, game-situation drills. Two full-size NBA courts. Every session builds toward draft-day readiness.
-                    </p>
-                    <div class="tag-row" style="margin-top: 15px; border: none; padding-top: 0;">
-                        <span class="diamond-tag">MECHANICS</span>
-                        <span class="diamond-tag">FOOTWORK</span>
-                        <span class="diamond-tag">NBA-IQ</span>
-                    </div>
-                </div>
-
-                <div class="partner-block">
-                    <h3>ARCHITECH SPORTS</h3>
-                    <p class="partner-desc">
-                        Architech Sports designs a custom strength and conditioning program for each athlete using data from the Sports Science Lab. Utilizing <strong>VALD Performance equipment</strong>, we measure agility, explosiveness, speed, and flexibility: a science-backed system built for your body and your game.
-                    </p>
-                    <div class="tag-row" style="margin-top: 15px; border: none; padding-top: 0;">
-                        <span class="diamond-tag">FORCE-PLATES</span>
-                        <span class="diamond-tag">VALD-PERFORMANCE</span>
-                        <span class="diamond-tag">VELOCITY</span>
-                    </div>
+            <div class="tile tile-medical">
+                <div class="tile-head">● Phase 01 // Foundation</div>
+                <h3>ELITE MEDICAL INTELLIGENCE.</h3>
+                <p>
+                    Everything starts with <strong>Carolina NeuroSurgery & Spine Associates (CNSA)</strong>. Before you touch a weight, you undergo a concierge medical evaluation. Bloodwork, diagnostic imaging, and injury risk analysis. We don't guess about your health; we engineer it.
+                </p>
+                <div class="spec-list">
+                    <span class="spec-tag">Concierge MD</span>
+                    <span class="spec-tag">MRI / X-Ray On-Site</span>
+                    <span class="spec-tag">Blood Panel Labs</span>
+                    <span class="spec-tag">Regenerative Med</span>
                 </div>
             </div>
-        </article>
-    </div>
 
-    <footer class="footer-section animate-in delay-3">
-        
-        <div class="facilities-strip">
-            <div class="facilities-head">World-Class Facilities — All On Site</div>
-            <div class="facilities-grid">
-                <div class="f-pill"><span class="f-dot"></span>2 Full NBA Courts</div>
-                <div class="f-pill"><span class="f-dot"></span>Weight Room</div>
-                <div class="f-pill"><span class="f-dot"></span>Indoor Turf Track</div>
-                <div class="f-pill"><span class="f-dot"></span>Sports Science Lab</div>
-                <div class="f-pill"><span class="f-dot"></span>Recovery Center</div>
-                <div class="f-pill"><span class="f-dot"></span>Conference Rooms</div>
+            <div class="photo-tile tile-photo-1">
+                <div class="photo-placeholder"><span>📷</span> INSERT MRI / LAB PHOTO</div>
+                <div class="photo-label">CNSA MEDICAL SUITE</div>
             </div>
+
+            <div class="tile tile-training">
+                <div class="tile-head">● Phase 02 // Performance</div>
+                <h3>SCIENCE-BACKED POWER.</h3>
+                <p>
+                    <strong>Architech Sports</strong> builds the engine using <strong>VALD Performance</strong> force plates and velocity-based training. <strong>Slay Basketball</strong> refines the chassis with NBA-level skill mechanics.
+                </p>
+                <div class="spec-list">
+                    <span class="spec-tag">VALD Force Plates</span>
+                    <span class="spec-tag">Motion Capture</span>
+                    <span class="spec-tag">NBA Vet Coaching</span>
+                </div>
+            </div>
+
+            <div class="tile tile-recovery">
+                <div class="tile-head">● Phase 03 // Longevity</div>
+                <h3>SYSTEMIC REGENERATION.</h3>
+                <p>
+                    Recovery isn't just ice. It's a protocol. Based on your medical data, we deploy nutrition scripts, dry needling, and physical therapy to ensure you are ready for the next session.
+                </p>
+                <div class="spec-list">
+                    <span class="spec-tag">Physical Therapy</span>
+                    <span class="spec-tag">Nutrition</span>
+                    <span class="spec-tag">Manual Work</span>
+                </div>
+            </div>
+
+            <div class="tile tile-finance">
+                <div class="tile-head">● Phase 04 // Future</div>
+                <h3>WEALTH STRATEGY.</h3>
+                <p>
+                    <strong>Taylor Capital</strong> prepares you for the business of basketball. Financial literacy and wealth management to ensure your legacy lasts longer than your contract.
+                </p>
+                <div class="spec-list">
+                    <span class="spec-tag">Financial Literacy</span>
+                    <span class="spec-tag">Wealth Mgmt</span>
+                </div>
+            </div>
+
         </div>
 
-        <div class="wrapper">
-            <div class="slogan-huge">ONE BUILDING.<br><span>ZERO EXCUSES.</span></div>
+        <footer>
+            <div style="font-family:var(--f-tech); color:var(--red); letter-spacing:2px; margin-bottom:20px; font-weight:700;">
+                THE FACILITY
+            </div>
+            <a href="https://carolinasmc.com" target="_blank" class="site-link">CAROLINASMC.COM</a>
+            <div class="address-row">
+                11415 Golf Links Drive, Charlotte, NC 28277
+            </div>
             
-            <a href="#" class="btn-glitch">REQUEST ACCESS</a>
-
-            <div class="contact-info">
-                11415 GOLF LINKS DRIVE, CHARLOTTE, NC 28277<br>
-                <a href="https://carolinasmc.com" target="_blank">CAROLINASMC.COM</a>
+            <div style="margin-top:50px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+                <span class="spec-tag" style="border-color:#333; color:#666;">2 Full NBA Courts</span>
+                <span class="spec-tag" style="border-color:#333; color:#666;">Indoor Turf Track</span>
+                <span class="spec-tag" style="border-color:#333; color:#666;">Recovery Lounge</span>
+                <span class="spec-tag" style="border-color:#333; color:#666;">Keiser Weight Room</span>
             </div>
-        </div>
-    </footer>
+        </footer>
+
+    </div>
 
 </body>
 </html>
