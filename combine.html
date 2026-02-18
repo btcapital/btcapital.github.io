@@ -93,11 +93,10 @@
             .ecosystem-logo { height: 80px; margin-bottom: 20px; }
         }
 
-        /* 2. SUBTITLE (INCREASED SIZE) */
+        /* 2. SUBTITLE */
         .main-subtitle {
             font-family: var(--f-tech);
             color: var(--red);
-            /* Increased size here */
             font-size: clamp(0.9rem, 3vw, 1.5rem);
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -115,7 +114,6 @@
             text-shadow: 0 20px 60px rgba(0,0,0,0.8);
             white-space: nowrap; 
         }
-        /* ADDED: Makes the span tag inside H1 red */
         h1 span {
             color: var(--red);
         }
@@ -179,7 +177,7 @@
             .logo-archi { height: 75px; }
         }
 
-        /* --- ECOSYSTEM GRID --- */
+        /* --- ECOSYSTEM GRID (UPDATED LAYOUT) --- */
         .eco-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -194,12 +192,21 @@
                 gap: 24px;
                 margin-bottom: 80px;
             }
+            /* Row 1: Medical */
             .tile-medical { grid-column: span 7; }
             .tile-photo-entrance { grid-column: span 5; }
-            .tile-photo-court { grid-column: span 5; }
-            .tile-training { grid-column: span 7; }
+            
+            /* Row 2: Therapy & Science */
+            .tile-therapy { grid-column: span 7; }
             .tile-photo-architech { grid-column: span 5; }
-            .tile-recovery { grid-column: span 7; }
+
+            /* Row 3: Science & Strength */
+            .tile-science { grid-column: span 6; }
+            .tile-strength { grid-column: span 6; }
+            
+            /* Row 4: Basketball */
+            .tile-photo-court { grid-column: span 5; }
+            .tile-basketball { grid-column: span 7; }
         }
 
         /* --- TILES --- */
@@ -357,9 +364,9 @@
             </div>
             
             <div class="manifesto-text">
-                <strong>The premier destination for total athletic optimization.</strong> 
+                <strong>The first facility in the country built to handle your health and your game in one place.</strong> 
                 <br><br>
-                We have centralized the entire athlete lifecycle, including Medical, Training, Recovery, and Financial Management, under one roof. You don't commute to get better; you enter an ecosystem designed to engineer your best self.
+                Medical, Training, and Recovery are finally under one roof. Stop driving across town to get better. This is a pro-level environment designed to maximize your efficiency, your body, and your draft stock.
             </div>
 
             <div class="logo-row">
@@ -375,13 +382,12 @@
                 <div class="tile-head">● Phase 01 // Foundation</div>
                 <h3>ELITE MEDICAL INTELLIGENCE.</h3>
                 <p>
-                    Everything starts with <strong>Carolina NeuroSurgery & Spine Associates (CNSA)</strong>. Before you touch a weight, you undergo a concierge medical evaluation. Bloodwork, diagnostic imaging, and injury risk analysis.
+                    Everything starts with <strong>Carolina NeuroSurgery & Spine Associates</strong>. Before you touch a weight, you undergo a concierge medical evaluation. Bloodwork, diagnostic imaging, and injury risk analysis.
                 </p>
                 <div class="spec-list">
                     <span class="spec-tag">Concierge MD</span>
                     <span class="spec-tag">MRI / X-Ray On-Site</span>
                     <span class="spec-tag">Blood Panel Labs</span>
-                    <span class="spec-tag">Regenerative Med</span>
                 </div>
             </div>
 
@@ -390,21 +396,16 @@
                 <div class="photo-label">FACILITY ENTRANCE</div>
             </div>
 
-            <div class="photo-tile tile-photo-court">
-                <img src="court_combine.jpg" alt="NBA Courts" style="width:100%; height:100%; object-fit:cover; opacity:0.9;" loading="lazy">
-                <div class="photo-label">2 FULL NBA COURTS + SCIENCE LAB</div>
-            </div>
-
-            <div class="tile tile-training">
-                <div class="tile-head">● Phase 02 // Performance</div>
-                <h3>SCIENCE-BACKED POWER.</h3>
+            <div class="tile tile-therapy">
+                <div class="tile-head">● Phase 02 // Restoration</div>
+                <h3>CLINICAL BODY MAINTENANCE.</h3>
                 <p>
-                    <strong>Architech Sports</strong> builds the engine using <strong>VALD Performance</strong> force plates. <strong>Slay Basketball</strong> refines the chassis with NBA-level skill mechanics.
+                    <strong>Architech Sports</strong> Physical Therapy keeps you on the floor. We treat the body daily with dry needling, manual therapy, and corrective exercises to eliminate pain and accelerate recovery.
                 </p>
                 <div class="spec-list">
-                    <span class="spec-tag">VALD Force Plates</span>
-                    <span class="spec-tag">Motion Capture</span>
-                    <span class="spec-tag">NBA Vet Coaching</span>
+                    <span class="spec-tag">Manual Therapy</span>
+                    <span class="spec-tag">Dry Needling</span>
+                    <span class="spec-tag">Injury Prevention</span>
                 </div>
             </div>
 
@@ -413,16 +414,47 @@
                 <div class="photo-label">PERFORMANCE & THERAPY SUITE</div>
             </div>
 
-            <div class="tile tile-recovery">
-                <div class="tile-head">● Phase 03 // Longevity</div>
-                <h3>SYSTEMIC REGENERATION.</h3>
+            <div class="tile tile-science">
+                <div class="tile-head">● Phase 03 // Intelligence</div>
+                <h3>BIOMETRIC LAB.</h3>
                 <p>
-                    Recovery isn't just ice. It's a protocol. Based on your medical data, we deploy nutrition scripts, dry needling, and physical therapy to ensure you are ready for the next session.
+                    We don't guess. We measure. Using <strong>VALD Performance</strong> force plates and velocity tracking, we build a digital profile of your explosiveness and identify exactly where you need to gain power.
                 </p>
                 <div class="spec-list">
-                    <span class="spec-tag">Physical Therapy</span>
-                    <span class="spec-tag">Nutrition</span>
-                    <span class="spec-tag">Manual Work</span>
+                    <span class="spec-tag">Force Plates</span>
+                    <span class="spec-tag">Velocity Tracking</span>
+                    <span class="spec-tag">Data Profiling</span>
+                </div>
+            </div>
+
+            <div class="tile tile-strength">
+                <div class="tile-head">● Phase 04 // Engine</div>
+                <h3>EXPLOSIVE POWER.</h3>
+                <p>
+                    Based on your lab data, we build a custom strength program. Using <strong>Keiser Pneumatics</strong> and free weights, we translate raw strength into vertical pop and on-court speed.
+                </p>
+                <div class="spec-list">
+                    <span class="spec-tag">Keiser Air</span>
+                    <span class="spec-tag">Power Output</span>
+                    <span class="spec-tag">Vertical Jump</span>
+                </div>
+            </div>
+
+            <div class="photo-tile tile-photo-court">
+                <img src="court_combine.jpg" alt="NBA Courts" style="width:100%; height:100%; object-fit:cover; opacity:0.9;" loading="lazy">
+                <div class="photo-label">2 FULL NBA COURTS + SCIENCE LAB</div>
+            </div>
+
+            <div class="tile tile-basketball">
+                <div class="tile-head">● Phase 05 // Translation</div>
+                <h3>NBA SKILL MECHANICS.</h3>
+                <p>
+                    <strong>Slay Basketball</strong> translates your new body into buckets. We refine shooting mechanics, footwork, and decision-making to ensure your physical gains show up in the stat sheet.
+                </p>
+                <div class="spec-list">
+                    <span class="spec-tag">NBA Vet Coaching</span>
+                    <span class="spec-tag">Shot Mechanics</span>
+                    <span class="spec-tag">Film Study</span>
                 </div>
             </div>
 
