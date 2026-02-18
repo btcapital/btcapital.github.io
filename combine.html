@@ -6,14 +6,14 @@
     
     <title>NBA PRE-DRAFT: THE ELITE ECOSYSTEM</title>
     <meta property="og:title" content="NBA PRE-DRAFT: THE ELITE ECOSYSTEM">
-    <meta property="og:description" content="The premier destination for total athletic optimization. Medical, Training, Recovery, and Wealth Management centralized under one roof in Charlotte, NC.">
-    <meta property="og:image" content="CSMC_Main_Entrance.jpg">
+    <meta property="og:description" content="The Country's Premier Intersection of Sports and Medicine. Medical, Training, and Recovery centralized under one roof in Charlotte, NC.">
+    <meta property="og:image" content="combine_hero_image.jpg">
     <meta property="og:type" content="website">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="NBA PRE-DRAFT: THE ELITE ECOSYSTEM">
-    <meta name="twitter:description" content="The premier destination for total athletic optimization. Medical, Training, Recovery, and Wealth Management under one roof.">
-    <meta name="twitter:image" content="CSMC_Main_Entrance.jpg">
+    <meta name="twitter:description" content="The Country's Premier Intersection of Sports and Medicine.">
+    <meta name="twitter:image" content="combine_hero_image.jpg">
 
     <meta name="theme-color" content="#050505">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -57,7 +57,6 @@
             background-size: 60px 60px; opacity: 0.2;
         }
         
-        /* Mobile Performance: reduced blur, added will-change */
         .orb {
             position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3;
             animation: float 20s infinite alternate ease-in-out;
@@ -77,31 +76,73 @@
         /* --- LAYOUT --- */
         .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
-        /* --- HEADER (MOBILE OPTIMIZED) --- */
-        header { padding: 30px 0 30px; text-align: center; }
+        /* --- HEADER --- */
+        header { padding: 30px 0 0; text-align: center; } 
         
         @media (min-width: 768px) {
-            header { padding: 60px 0 40px; }
+            header { padding: 60px 0 0; }
         }
 
+        /* 1. TOP LOGO */
         .ecosystem-logo {
             height: 50px; width: auto; 
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             filter: brightness(0) invert(1);
         }
         @media (min-width: 768px) {
-            .ecosystem-logo { height: 80px; margin-bottom: 30px; }
+            .ecosystem-logo { height: 80px; margin-bottom: 20px; }
         }
 
+        /* 2. SUBTITLE (INCREASED SIZE) */
+        .main-subtitle {
+            font-family: var(--f-tech);
+            color: var(--red);
+            /* Increased size here */
+            font-size: clamp(0.9rem, 3vw, 1.5rem);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* 3. HEADLINE */
         h1 {
             font-family: var(--f-head); 
-            font-size: clamp(3.5rem, 10vw, 7.5rem); 
-            line-height: 0.9;
-            margin: 0 0 20px 0; color: #fff; text-transform: uppercase; letter-spacing: 1px;
+            font-size: clamp(1.8rem, 5.5vw, 6rem); 
+            line-height: 1;
+            margin: 0 0 40px 0; color: #fff; text-transform: uppercase; letter-spacing: 1px;
             text-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            white-space: nowrap; 
         }
-        h1 span { color: var(--red); }
+        /* ADDED: Makes the span tag inside H1 red */
+        h1 span {
+            color: var(--red);
+        }
 
+        /* 4. SEAMLESS HERO IMAGE CONTAINER */
+        .hero-image-container {
+            width: 100%;
+            max-width: 1400px; 
+            margin: 0 auto 20px auto; 
+            position: relative;
+            
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(1.1) contrast(1.15); 
+        }
+
+        /* MANIFESTO */
         .manifesto-text {
             font-size: clamp(1rem, 3vw, 1.25rem); 
             color: #ddd; max-width: 800px; 
@@ -111,6 +152,7 @@
             text-align: left;
             background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, transparent 100%);
             border-radius: 0 8px 8px 0;
+            position: relative; z-index: 2; 
         }
         @media (min-width: 768px) {
             .manifesto-text { padding: 25px; margin-bottom: 60px; }
@@ -120,7 +162,7 @@
         /* --- LOGO STRIP --- */
         .logo-row {
             display: flex; justify-content: center; align-items: center; 
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
             margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid var(--glass-border);
         }
@@ -129,14 +171,12 @@
         .logo-cnsa { height: 45px; }
         .logo-slay { height: 55px; }
         .logo-archi { height: 45px; }
-        .logo-taylor { height: 45px; }
 
         @media (min-width: 768px) {
-            .logo-row { gap: 80px; margin-bottom: 80px; padding-bottom: 40px; }
+            .logo-row { gap: 100px; margin-bottom: 80px; padding-bottom: 40px; }
             .logo-cnsa { height: 75px; }
             .logo-slay { height: 95px; }
             .logo-archi { height: 75px; }
-            .logo-taylor { height: 75px; }
         }
 
         /* --- ECOSYSTEM GRID --- */
@@ -160,7 +200,6 @@
             .tile-training { grid-column: span 7; }
             .tile-photo-architech { grid-column: span 5; }
             .tile-recovery { grid-column: span 7; }
-            .tile-finance { grid-column: span 12; }
         }
 
         /* --- TILES --- */
@@ -221,44 +260,6 @@
             font-family: var(--f-tech); font-size: 0.75rem; letter-spacing: 2px;
             border-top: 1px solid var(--red); backdrop-filter: blur(5px);
         }
-
-        /* FINANCE TILE */
-        .finance-inner {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            align-items: center;
-        }
-        @media (min-width: 768px) {
-            .finance-inner { grid-template-columns: 1fr 1.5fr; gap: 40px; }
-        }
-
-        .finance-columns {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            padding-left: 0;
-            border-left: none;
-        }
-        @media (min-width: 600px) {
-             .finance-columns { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (min-width: 768px) {
-            .finance-columns {
-                gap: 30px;
-                border-left: 1px solid rgba(255,255,255,0.1);
-                padding-left: 30px;
-            }
-        }
-
-        .fin-col h4 {
-            font-family: var(--f-tech); color: var(--red); font-size: 1rem; margin-bottom: 10px; letter-spacing: 2px;
-        }
-        .fin-col ul { list-style: none; padding: 0; margin: 0; }
-        .fin-col li {
-            color: #ccc; font-size: 0.9rem; margin-bottom: 8px; position: relative; padding-left: 15px;
-        }
-        .fin-col li::before { content: '›'; color: var(--red); position: absolute; left: 0; }
 
         /* TYPOGRAPHY */
         .tile-head {
@@ -347,10 +348,16 @@
         <header>
             <img src="logo_combine.png" alt="Carolina Sports Medicine Center" class="ecosystem-logo">
             
-            <h1>NBA PRE-DRAFT<br><span>COMBINE</span></h1>
+            <span class="main-subtitle">The Country's Premier Intersection of Sports and Medicine</span>
+
+            <h1>NBA PRE-DRAFT <span>COMBINE</span></h1>
+
+            <div class="hero-image-container">
+                <img src="combine_hero_image.jpg" alt="Athletic Optimization Ecosystem" class="hero-image">
+            </div>
             
             <div class="manifesto-text">
-                <strong>We are the premier destination for total athletic optimization.</strong> 
+                <strong>The premier destination for total athletic optimization.</strong> 
                 <br><br>
                 We have centralized the entire athlete lifecycle, including Medical, Training, Recovery, and Financial Management, under one roof. You don't commute to get better; you enter an ecosystem designed to engineer your best self.
             </div>
@@ -359,7 +366,6 @@
                 <img src="cnsa_logo_combine.png" alt="CNSA" class="logo-cnsa">
                 <img src="slay_logo_combine.png" alt="Slay" class="logo-slay">
                 <img src="architech_logo_combine.png" alt="Architech" class="logo-archi">
-                <img src="taylor_logo_combine.png" alt="Taylor" class="logo-taylor">
             </div>
         </header>
 
@@ -417,48 +423,6 @@
                     <span class="spec-tag">Physical Therapy</span>
                     <span class="spec-tag">Nutrition</span>
                     <span class="spec-tag">Manual Work</span>
-                </div>
-            </div>
-
-            <div class="tile tile-finance">
-                <div class="finance-inner">
-                    <div>
-                        <div class="tile-head">● Phase 04 // ENTERPRISE</div>
-                        <h3 style="margin-bottom:10px;">YOU ARE A BUSINESS.</h3>
-                        <p style="font-size:1.1rem; color:#fff;">
-                            The average NBA career is 4.5 years. The money has to last 50. <strong>Taylor Capital</strong> builds the infrastructure for your life after the game, starting day one.
-                        </p>
-                        <div style="margin-top:20px;">
-                            <span class="spec-tag" style="border-color:var(--red); color:var(--red); width: fit-content;">LEGACY FOCUSED</span>
-                        </div>
-                    </div>
-                    
-                    <div class="finance-columns">
-                        <div class="fin-col">
-                            <h4>STRUCTURE</h4>
-                            <ul>
-                                <li>LLC Formation</li>
-                                <li>Contract Structuring</li>
-                                <li>Risk Management</li>
-                            </ul>
-                        </div>
-                        <div class="fin-col">
-                            <h4>STRATEGY</h4>
-                            <ul>
-                                <li>Tax Efficiency</li>
-                                <li>Budgeting</li>
-                                <li>Brand Monetization</li>
-                            </ul>
-                        </div>
-                        <div class="fin-col">
-                            <h4>GROWTH</h4>
-                            <ul>
-                                <li>Private Equity</li>
-                                <li>Real Estate</li>
-                                <li>Portfolio Mgmt</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
 
