@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NBA Pre-Draft Combine — The Elite Ecosystem | Carolina Sports Medicine Center</title>
+    <title>NBA Pre-Draft Combine | Carolina Sports Medicine Center</title>
     <meta name="description" content="The country's premier intersection of sports and medicine. Medical, training, and recovery centralized under one roof at Carolina Sports Medicine Center in Charlotte, NC.">
 
     <!-- Open Graph — IMPORTANT: Replace YOUR_DOMAIN with your actual domain -->
-    <meta property="og:title" content="NBA Pre-Draft Combine — The Elite Ecosystem">
+    <meta property="og:title" content="NBA Pre-Draft Combine | Carolina Sports Medicine Center">
     <meta property="og:description" content="The country's premier intersection of sports and medicine. Medical, training, and recovery centralized under one roof in Charlotte, NC.">
     <meta property="og:image" content="https://YOUR_DOMAIN.com/combine_hero.png">
     <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="NBA Pre-Draft Combine — The Elite Ecosystem">
+    <meta name="twitter:title" content="NBA Pre-Draft Combine | Carolina Sports Medicine Center">
     <meta name="twitter:description" content="The country's premier intersection of sports and medicine.">
     <meta name="twitter:image" content="https://YOUR_DOMAIN.com/combine_hero.png">
 
@@ -555,8 +555,10 @@
         }
 
         /* ================================================================
-           TILE TYPOGRAPHY
+           TILE TYPOGRAPHY — Dual-layer (athlete + agent/parent)
            ================================================================ */
+
+        /* Phase header with large number */
         .tile-phase {
             font-family: var(--f-tech);
             color: var(--red);
@@ -567,35 +569,87 @@
             margin-bottom: 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
-        /* Decorative dot — hidden from screen readers via aria-hidden on the span */
-        .phase-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: var(--red);
-            border-radius: 50%;
-            flex-shrink: 0;
+        .phase-number {
+            font-family: var(--f-head);
+            font-size: 2.2rem;
+            line-height: 1;
+            color: var(--red);
+            opacity: 0.35;
+        }
+        @media (min-width: 768px) {
+            .phase-number { font-size: 2.8rem; }
         }
 
         .tile h3 {
             font-family: var(--f-head);
             font-size: clamp(1.9rem, 4.5vw, 2.5rem);
             line-height: 0.95;
-            margin: 0 0 14px 0;
+            margin: 0 0 16px 0;
             color: white;
             text-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
-        .tile p {
-            font-size: clamp(0.95rem, 2.2vw, 1.05rem);
-            color: var(--text-body);
+        /* ATHLETE LAYER — Bold punchy lines inside tiles */
+        .tile-bold {
+            margin-bottom: 14px;
+        }
+        .tile-bold p {
+            font-family: var(--f-tech);
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.4;
+            margin: 0 0 4px 0;
+            letter-spacing: 0.3px;
+        }
+
+        /* AGENT/PARENT LAYER — Supporting detail */
+        .tile-detail {
+            font-size: clamp(0.85rem, 2vw, 0.92rem);
+            color: var(--text-muted);
             line-height: 1.65;
             margin-bottom: 0;
-            font-weight: 300;
+            font-weight: 400;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
-        .tile p strong { color: #fff; font-weight: 600; }
+        @media (min-width: 768px) {
+            .tile-detail { padding-top: 14px; }
+        }
+
+        /* ================================================================
+           JOURNEY CONNECTORS — Visual progression between phases
+           ================================================================
+           On mobile (stacked layout): vertical line + downward arrow
+           between each phase tile. Hidden on desktop where the grid
+           layout communicates the flow visually.
+        */
+        .phase-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4px 0;
+        }
+        .connector-line {
+            width: 2px;
+            height: 28px;
+            background: linear-gradient(180deg, var(--red), rgba(200, 16, 46, 0.2));
+        }
+        .connector-arrow {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid var(--red);
+            opacity: 0.6;
+        }
+
+        /* On desktop, the grid layout implies flow, so hide connectors */
+        @media (min-width: 1024px) {
+            .phase-connector { display: none; }
+        }
 
         /* ================================================================
            SPEC TAGS
@@ -741,8 +795,10 @@
             body { background: #fff; color: #000; }
             .bg-canvas, .orb { display: none; }
             .tile { background: #f5f5f5; border: 1px solid #ccc; color: #000; box-shadow: none; backdrop-filter: none; }
-            .tile h3, .tile p, .tile-phase { color: #000; }
-            .tile p { color: #333; }
+            .tile h3, .tile-bold p, .tile-phase { color: #000; }
+            .tile-detail { color: #333; border-color: #ddd; }
+            .phase-number { color: var(--red); opacity: 1; }
+            .phase-connector { display: none; }
             .spec-tag { background: #eee; color: #000; border-color: #ccc; }
             .site-link { color: #000; border-color: #000; }
             .photo-label { background: #333; }
@@ -841,47 +897,55 @@
 
             <div class="eco-grid">
 
-                <!-- PHASE 01: Medical -->
+                <!-- PHASE 01: Medical Clearance -->
                 <article class="tile tile-medical">
                     <div>
                         <div class="tile-phase">
-                            <span class="phase-dot" aria-hidden="true"></span>
-                            Phase 01 — Foundation
+                            <span class="phase-number">01</span>
+                            Foundation
                         </div>
-                        <h3>ELITE MEDICAL INTELLIGENCE.</h3>
-                        <p>
-                            Everything starts with <strong>Carolina NeuroSurgery &amp; Spine Associates</strong>. Before you touch a weight, you undergo a concierge medical evaluation. Bloodwork, comprehensive health screening, and injury risk analysis.
+                        <h3>MEDICAL CLEARANCE.</h3>
+                        <div class="tile-bold">
+                            <p>Know your body before you build it.</p>
+                            <p>Full medical evaluation. Regenerative medicine. On-site.</p>
+                        </div>
+                        <p class="tile-detail">
+                            Carolina NeuroSurgery &amp; Spine Associates runs concierge-level medical evaluations on-site. Bloodwork, comprehensive health screening, and injury risk analysis. CNSA also offers advanced regenerative treatments including PRP (Platelet-Rich Plasma) therapy, using your body's own healing properties to accelerate tissue repair and recovery.
                         </p>
                     </div>
                     <ul class="spec-list" aria-label="Medical capabilities">
                         <li class="spec-tag"><span class="spec-diamond" aria-hidden="true"></span> Concierge MD</li>
-
                         <li class="spec-tag"><span class="spec-diamond" aria-hidden="true"></span> Blood Panel Labs</li>
+                        <li class="spec-tag"><span class="spec-diamond" aria-hidden="true"></span> Regenerative Medicine</li>
                     </ul>
                 </article>
 
                 <!-- Photo: Entrance -->
                 <div class="photo-tile tile-photo-entrance" role="img" aria-label="Carolina Sports Medicine Center main entrance">
-                    <img
-                        src="CSMC_Main_Entrance.jpg"
-                        alt=""
-                        width="800"
-                        height="600"
-                        loading="lazy"
-                    >
+                    <img src="CSMC_Main_Entrance.jpg" alt="" width="800" height="600" loading="lazy">
                     <div class="photo-label" aria-hidden="true">FACILITY ENTRANCE</div>
                 </div>
 
-                <!-- PHASE 02: Therapy -->
+                <!-- Journey connector (visible on mobile between stacked tiles) -->
+                <div class="phase-connector" aria-hidden="true">
+                    <div class="connector-line"></div>
+                    <div class="connector-arrow"></div>
+                </div>
+
+                <!-- PHASE 02: Body Maintenance -->
                 <article class="tile tile-therapy">
                     <div>
                         <div class="tile-phase">
-                            <span class="phase-dot" aria-hidden="true"></span>
-                            Phase 02 — Restoration
+                            <span class="phase-number">02</span>
+                            Restoration
                         </div>
-                        <h3>SYSTEMIC RESTORATION.</h3>
-                        <p>
-                            <strong>Architech Sports</strong> Physical Therapy provides clinical body maintenance. We deploy dry needling, manual therapy, and corrective protocols to eliminate pain and accelerate recovery curves.
+                        <h3>BODY MAINTENANCE.</h3>
+                        <div class="tile-bold">
+                            <p>Fix what's broken. Protect what's not.</p>
+                            <p>Clinical-grade therapy built around your body.</p>
+                        </div>
+                        <p class="tile-detail">
+                            Architech Sports Physical Therapy provides hands-on treatment including dry needling, manual therapy, and corrective protocols. The goal is to eliminate existing pain, reduce injury risk, and keep your body performing at its ceiling throughout the pre-draft process.
                         </p>
                     </div>
                     <ul class="spec-list" aria-label="Therapy capabilities">
@@ -891,47 +955,61 @@
                     </ul>
                 </article>
 
-                <!-- PHASE 03: Science -->
+                <!-- Journey connector -->
+                <div class="phase-connector" aria-hidden="true">
+                    <div class="connector-line"></div>
+                    <div class="connector-arrow"></div>
+                </div>
+
+                <!-- PHASE 03: Sports Science -->
                 <article class="tile tile-science">
                     <div>
                         <div class="tile-phase">
-                            <span class="phase-dot" aria-hidden="true"></span>
-                            Phase 03 — Intelligence
+                            <span class="phase-number">03</span>
+                            Intelligence
                         </div>
-                        <h3>QUANTIFIABLE PERFORMANCE.</h3>
-                        <p>
-                            Utilizing the <strong>VALD Performance</strong> suite, we generate a comprehensive biometric profile of your movement. We identify force asymmetries and velocity deficits to target exact areas for improvement.
+                        <h3>SPORTS SCIENCE.</h3>
+                        <div class="tile-bold">
+                            <p>We measure everything you can't see.</p>
+                            <p>Force. Speed. Movement. All quantified.</p>
+                        </div>
+                        <p class="tile-detail">
+                            Using the VALD Performance suite, our sports scientists generate a full biometric profile of how you move. Force plates measure asymmetries. Velocity tracking identifies speed deficits. Every number becomes a target for your training program.
                         </p>
                     </div>
                     <ul class="spec-list" aria-label="Performance science capabilities">
                         <li class="spec-tag"><span class="spec-diamond" aria-hidden="true"></span> Force Plates</li>
                         <li class="spec-tag"><span class="spec-diamond" aria-hidden="true"></span> Velocity Tracking</li>
-                        <li class="spec-tag"><span class="spec-diamond" aria-hidden="true"></span> Biometrics</li>
+                        <li class="spec-tag"><span class="spec-diamond" aria-hidden="true"></span> Biometric Profiling</li>
                     </ul>
                 </article>
 
                 <!-- Photo: Performance Suite -->
                 <div class="photo-tile tile-photo-architech" role="img" aria-label="Architech Sports performance treatment room">
-                    <img
-                        src="architech_room_combine.jpg"
-                        alt=""
-                        width="800"
-                        height="600"
-                        loading="lazy"
-                    >
+                    <img src="architech_room_combine.jpg" alt="" width="800" height="600" loading="lazy">
                     <div class="photo-label" aria-hidden="true">PERFORMANCE SUITE</div>
                 </div>
 
-                <!-- PHASE 04: Strength -->
+                <!-- Journey connector -->
+                <div class="phase-connector" aria-hidden="true">
+                    <div class="connector-line"></div>
+                    <div class="connector-arrow"></div>
+                </div>
+
+                <!-- PHASE 04: Strength and Power -->
                 <article class="tile tile-strength">
                     <div>
                         <div class="tile-phase">
-                            <span class="phase-dot" aria-hidden="true"></span>
-                            Phase 04 — Engine
+                            <span class="phase-number">04</span>
+                            Engine
                         </div>
-                        <h3>EXPLOSIVE POWER.</h3>
-                        <p>
-                            Based on your lab data, we build a custom strength program. Using <strong>Keiser Pneumatics</strong> and free weights, we translate raw strength into vertical pop and on-court speed.
+                        <h3>STRENGTH AND POWER.</h3>
+                        <div class="tile-bold">
+                            <p>Your data builds your program.</p>
+                            <p>Translate raw strength into vertical pop and court speed.</p>
+                        </div>
+                        <p class="tile-detail">
+                            Your strength program is built directly from your Phase 03 lab data. Using Keiser Pneumatics and free weights, we target the specific outputs that matter for the combine and pro-level play: explosive power, vertical leap, and lateral quickness.
                         </p>
                     </div>
                     <ul class="spec-list" aria-label="Strength training capabilities">
@@ -941,16 +1019,26 @@
                     </ul>
                 </article>
 
-                <!-- PHASE 05: Basketball -->
+                <!-- Journey connector -->
+                <div class="phase-connector" aria-hidden="true">
+                    <div class="connector-line"></div>
+                    <div class="connector-arrow"></div>
+                </div>
+
+                <!-- PHASE 05: Skill Development -->
                 <article class="tile tile-basketball">
                     <div>
                         <div class="tile-phase">
-                            <span class="phase-dot" aria-hidden="true"></span>
-                            Phase 05 — Translation
+                            <span class="phase-number">05</span>
+                            Translation
                         </div>
-                        <h3>NBA SKILL MECHANICS.</h3>
-                        <p>
-                            <strong>Slay Basketball</strong> translates your physical gains into buckets. We refine shooting mechanics, footwork, and decision-making to ensure your athleticism shows up in the stat sheet.
+                        <h3>SKILL DEVELOPMENT.</h3>
+                        <div class="tile-bold">
+                            <p>Athleticism means nothing without skill.</p>
+                            <p>This is where your body meets the basketball.</p>
+                        </div>
+                        <p class="tile-detail">
+                            Slay Basketball Academy translates your physical gains into on-court production. NBA-experienced coaches refine your shooting mechanics, footwork, and decision-making. The goal: make sure your athleticism shows up in the stat sheet.
                         </p>
                     </div>
                     <ul class="spec-list" aria-label="Basketball training capabilities">
@@ -962,13 +1050,7 @@
 
                 <!-- Photo: Courts -->
                 <div class="photo-tile tile-photo-court" role="img" aria-label="Two full-size NBA regulation basketball courts">
-                    <img
-                        src="court_combine.jpg"
-                        alt=""
-                        width="800"
-                        height="600"
-                        loading="lazy"
-                    >
+                    <img src="court_combine.jpg" alt="" width="800" height="600" loading="lazy">
                     <div class="photo-label" aria-hidden="true">2 FULL NBA COURTS</div>
                 </div>
 
