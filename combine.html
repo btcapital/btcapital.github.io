@@ -620,22 +620,35 @@
         }
 
         /* ================================================================
-           JOURNEY CONNECTORS — Visual progression between phases
+           JOURNEY CONNECTORS — Labeled transitions between phases
            ================================================================
-           On mobile (stacked layout): vertical line + downward arrow
-           between each phase tile. Hidden on desktop where the grid
-           layout communicates the flow visually.
+           On mobile: vertical line + label + arrow between each phase.
+           The labels tell the story: "Body cleared. Now we fix it."
+           On desktop: hidden, but the timeline bar handles progression.
         */
         .phase-connector {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 4px 0;
+            padding: 2px 0;
         }
         .connector-line {
             width: 2px;
-            height: 28px;
-            background: linear-gradient(180deg, var(--red), rgba(200, 16, 46, 0.2));
+            height: 20px;
+            background: linear-gradient(180deg, rgba(200, 16, 46, 0.5), rgba(200, 16, 46, 0.25));
+        }
+        .connector-label {
+            font-family: var(--f-tech);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--red);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            background: rgba(200, 16, 46, 0.08);
+            border: 1px solid rgba(200, 16, 46, 0.2);
+            border-radius: 50px;
+            white-space: nowrap;
         }
         .connector-arrow {
             width: 0;
@@ -643,12 +656,63 @@
             border-left: 6px solid transparent;
             border-right: 6px solid transparent;
             border-top: 8px solid var(--red);
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
-        /* On desktop, the grid layout implies flow, so hide connectors */
+        /* On desktop, hide the inline connectors */
         @media (min-width: 1024px) {
             .phase-connector { display: none; }
+        }
+
+        /* ================================================================
+           VERTICAL TIMELINE BAR — Desktop progression indicator
+           ================================================================
+           A continuous red line that runs down the left side of the
+           eco-grid on desktop, with phase number nodes along it.
+           This makes the sequential journey visible at a glance.
+        */
+        @media (min-width: 1024px) {
+            .eco-grid {
+                position: relative;
+            }
+            /* The timeline track */
+            .eco-grid::before {
+                content: '';
+                position: absolute;
+                left: -40px;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background: linear-gradient(
+                    180deg,
+                    var(--red) 0%,
+                    rgba(200, 16, 46, 0.6) 50%,
+                    rgba(200, 16, 46, 0.15) 100%
+                );
+                border-radius: 3px;
+            }
+        }
+        @media (min-width: 1280px) {
+            .eco-grid::before { left: -52px; }
+        }
+
+        /* Timeline phase node dots on desktop */
+        @media (min-width: 1024px) {
+            .tile .tile-phase::before {
+                content: '';
+                position: absolute;
+                left: -48px;
+                top: 32px;
+                width: 13px;
+                height: 13px;
+                background: var(--red);
+                border-radius: 50%;
+                border: 3px solid var(--black);
+                box-shadow: 0 0 0 2px var(--red), 0 0 12px rgba(200, 16, 46, 0.4);
+            }
+        }
+        @media (min-width: 1280px) {
+            .tile .tile-phase::before { left: -60px; }
         }
 
         /* ================================================================
@@ -799,6 +863,8 @@
             .tile-detail { color: #333; border-color: #ddd; }
             .phase-number { color: var(--red); opacity: 1; }
             .phase-connector { display: none; }
+            .eco-grid::before { display: none; }
+            .tile .tile-phase::before { display: none; }
             .spec-tag { background: #eee; color: #000; border-color: #ccc; }
             .site-link { color: #000; border-color: #000; }
             .photo-label { background: #333; }
@@ -926,8 +992,10 @@
                     <div class="photo-label" aria-hidden="true">FACILITY ENTRANCE</div>
                 </div>
 
-                <!-- Journey connector (visible on mobile between stacked tiles) -->
+                <!-- Journey connector: Phase 01 to Phase 02 -->
                 <div class="phase-connector" aria-hidden="true">
+                    <div class="connector-line"></div>
+                    <div class="connector-label">Body cleared. Now we fix it.</div>
                     <div class="connector-line"></div>
                     <div class="connector-arrow"></div>
                 </div>
@@ -955,8 +1023,10 @@
                     </ul>
                 </article>
 
-                <!-- Journey connector -->
+                <!-- Journey connector: Phase 02 to Phase 03 -->
                 <div class="phase-connector" aria-hidden="true">
+                    <div class="connector-line"></div>
+                    <div class="connector-label">Body restored. Now we measure it.</div>
                     <div class="connector-line"></div>
                     <div class="connector-arrow"></div>
                 </div>
@@ -990,8 +1060,10 @@
                     <div class="photo-label" aria-hidden="true">PERFORMANCE SUITE</div>
                 </div>
 
-                <!-- Journey connector -->
+                <!-- Journey connector: Phase 03 to Phase 04 -->
                 <div class="phase-connector" aria-hidden="true">
+                    <div class="connector-line"></div>
+                    <div class="connector-label">Data collected. Now we build on it.</div>
                     <div class="connector-line"></div>
                     <div class="connector-arrow"></div>
                 </div>
@@ -1019,8 +1091,10 @@
                     </ul>
                 </article>
 
-                <!-- Journey connector -->
+                <!-- Journey connector: Phase 04 to Phase 05 -->
                 <div class="phase-connector" aria-hidden="true">
+                    <div class="connector-line"></div>
+                    <div class="connector-label">Power built. Now we use it.</div>
                     <div class="connector-line"></div>
                     <div class="connector-arrow"></div>
                 </div>
