@@ -351,102 +351,194 @@
            through the facility. Glowing red connectors, pulsing nodes,
            and a dramatic final "Premier Athlete" destination.
         */
+        /* ================================================================
+           VERTICAL FLOW CHART — Premium redesign
+           ================================================================
+           7 design upgrades:
+           1. Step numbers on each node
+           2. Progressive visual intensity (crescendo effect)
+           3. Varied node widths (diamond shape)
+           4. Red accent underlines inside nodes
+           5. Glow halos at connector junctions
+           6. Stronger separation from hero above
+           7. Radial background treatment behind the chart
+        */
         .flow-chart {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 48px 0 40px;
+            padding: 20px 0 24px;
             position: relative;
             z-index: 2;
         }
         @media (min-width: 768px) {
-            .flow-chart { padding: 64px 0 56px; }
+            .flow-chart { padding: 28px 0 32px; }
+        }
+
+        /* [#7] Radial background glow behind the entire chart */
+        .flow-chart::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 110%;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(200, 16, 46, 0.04) 0%,
+                rgba(200, 16, 46, 0.02) 40%,
+                transparent 70%
+            );
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* [#6] Divider line above THE PATHWAY heading */
+        .pathway-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(200, 16, 46, 0.4), transparent);
+            margin: 0 auto 20px;
+        }
+        @media (min-width: 768px) {
+            .pathway-divider { width: 120px; margin-bottom: 28px; }
         }
 
         /* --- NODES --- */
         .flow-node {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             text-align: center;
             position: relative;
-            padding: 22px 28px;
-            background: rgba(200, 16, 46, 0.06);
-            border: 1px solid rgba(200, 16, 46, 0.2);
-            border-radius: 12px;
-            min-width: 260px;
-            max-width: 420px;
-            width: 90%;
+            padding: 12px 14px 14px 24px;
+            border-radius: 10px;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+            gap: 12px;
         }
         @media (min-width: 768px) {
-            .flow-node {
-                padding: 28px 48px;
-                min-width: 360px;
-                max-width: 500px;
-                width: auto;
-            }
+            .flow-node { padding: 14px 20px 16px 36px; gap: 16px; }
         }
         @media (hover: hover) {
             .flow-node:hover {
+                transform: scale(1.02);
                 border-color: rgba(200, 16, 46, 0.5);
-                box-shadow:
-                    0 0 20px rgba(200, 16, 46, 0.15),
-                    0 0 40px rgba(200, 16, 46, 0.05);
             }
         }
 
-        /* Node text - LARGE and prominent */
+        /* [#2] Progressive intensity per step
+           [#3] Varied widths creating a diamond/funnel shape */
+        .flow-step-1 {
+            background: rgba(200, 16, 46, 0.05);
+            border: 1px solid rgba(200, 16, 46, 0.18);
+            box-shadow: 0 0 16px rgba(200, 16, 46, 0.06);
+            width: 78%;
+            max-width: 340px;
+        }
+        .flow-step-2 {
+            background: rgba(200, 16, 46, 0.07);
+            border: 1px solid rgba(200, 16, 46, 0.22);
+            box-shadow: 0 0 20px rgba(200, 16, 46, 0.08);
+            width: 82%;
+            max-width: 360px;
+        }
+        .flow-step-3 {
+            background: rgba(200, 16, 46, 0.09);
+            border: 1px solid rgba(200, 16, 46, 0.26);
+            box-shadow: 0 0 24px rgba(200, 16, 46, 0.1);
+            width: 86%;
+            max-width: 380px;
+        }
+        .flow-step-4 {
+            background: rgba(200, 16, 46, 0.11);
+            border: 1px solid rgba(200, 16, 46, 0.3);
+            box-shadow: 0 0 28px rgba(200, 16, 46, 0.12);
+            width: 90%;
+            max-width: 400px;
+        }
+        .flow-step-5 {
+            background: rgba(200, 16, 46, 0.09);
+            border: 1px solid rgba(200, 16, 46, 0.26);
+            box-shadow: 0 0 24px rgba(200, 16, 46, 0.1);
+            width: 82%;
+            max-width: 360px;
+        }
+        @media (min-width: 768px) {
+            .flow-step-1 { max-width: 380px; }
+            .flow-step-2 { max-width: 400px; }
+            .flow-step-3 { max-width: 430px; }
+            .flow-step-4 { max-width: 460px; }
+            .flow-step-5 { max-width: 400px; }
+        }
+
+        /* [#1] Step numbers — left-aligned with subtle separator */
+        .flow-step-num {
+            font-family: var(--f-head);
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            color: var(--red);
+            letter-spacing: 2px;
+            flex-shrink: 0;
+            padding-right: 12px;
+            border-right: 1px solid rgba(200, 16, 46, 0.2);
+            line-height: 1;
+        }
+        @media (min-width: 768px) {
+            .flow-step-num { padding-right: 16px; }
+        }
+
+        /* Node text */
         .flow-node-label {
             font-family: var(--f-tech);
-            font-size: clamp(1.25rem, 3.5vw, 1.65rem);
+            font-size: clamp(1.05rem, 3vw, 1.35rem);
             font-weight: 700;
             color: #fff;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            line-height: 1.3;
-        }
-        .flow-node-sub {
-            font-family: var(--f-body);
-            font-size: clamp(0.82rem, 2vw, 0.92rem);
-            color: var(--text-muted);
-            margin-top: 6px;
-            letter-spacing: 0.5px;
+            line-height: 1.25;
+            flex: 1;
+            text-align: center;
         }
 
-        /* Top node (CNSA) - slightly more prominent */
-        .flow-node-top {
-            border-color: rgba(200, 16, 46, 0.3);
-            box-shadow: 0 0 24px rgba(200, 16, 46, 0.1);
-        }
+        /* Accent underline removed — the step-num left separator
+           now serves as the accent detail in the row layout */
+        .flow-node-label::after { display: none; }
+
+        /* [R4] Progressive step number opacity + separator intensity */
+        .flow-step-1 .flow-step-num { opacity: 0.35; border-right-color: rgba(200, 16, 46, 0.12); }
+        .flow-step-2 .flow-step-num { opacity: 0.42; border-right-color: rgba(200, 16, 46, 0.15); }
+        .flow-step-3 .flow-step-num { opacity: 0.5;  border-right-color: rgba(200, 16, 46, 0.2); }
+        .flow-step-4 .flow-step-num { opacity: 0.6;  border-right-color: rgba(200, 16, 46, 0.25); }
+        .flow-step-5 .flow-step-num { opacity: 0.5;  border-right-color: rgba(200, 16, 46, 0.2); }
 
         /* --- FINAL NODE (Premier Athlete) --- */
         .flow-node-final {
-            background: rgba(200, 16, 46, 0.1);
+            background: rgba(200, 16, 46, 0.12);
             border: 2px solid rgba(200, 16, 46, 0.5);
             box-shadow:
                 0 0 30px rgba(200, 16, 46, 0.2),
                 0 0 60px rgba(200, 16, 46, 0.08),
                 inset 0 0 30px rgba(200, 16, 46, 0.05);
-            padding: 28px 44px;
+            padding: 16px 40px;
+            width: 72%;
+            max-width: 320px;
         }
         @media (min-width: 768px) {
-            .flow-node-final { padding: 32px 60px; }
+            .flow-node-final { padding: 20px 52px; max-width: 360px; }
         }
 
-        /* Checkmark icon for final node */
         .flow-check {
-            width: 52px;
-            height: 52px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: rgba(200, 16, 46, 0.2);
             border: 2px solid rgba(200, 16, 46, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             color: #fff;
             box-shadow:
                 0 0 20px rgba(200, 16, 46, 0.3),
@@ -454,22 +546,30 @@
         }
 
         .flow-label-final {
-            font-size: clamp(1.4rem, 4vw, 1.85rem);
+            font-size: clamp(1.15rem, 3.5vw, 1.5rem);
             color: var(--red);
             letter-spacing: 2px;
         }
+        /* No underline on the final node label */
+        .flow-label-final::after {
+            display: none;
+        }
 
-        /* --- CONNECTORS (glowing red lines + arrows) --- */
+        /* --- CONNECTORS --- */
         .flow-connector {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 8px 0;
+            padding: 3px 0;
+            position: relative;
         }
+
+        /* Connector junction dots removed — arrows + glowing lines
+           already communicate flow; dots added visual noise */
 
         .flow-line {
             width: 3px;
-            height: 40px;
+            height: 20px;
             background: linear-gradient(
                 180deg,
                 rgba(200, 16, 46, 0.7) 0%,
@@ -482,10 +582,9 @@
             position: relative;
         }
         @media (min-width: 768px) {
-            .flow-line { height: 48px; }
+            .flow-line { height: 24px; }
         }
 
-        /* Animated glow pulse on the line */
         .flow-line::after {
             content: '';
             position: absolute;
@@ -504,9 +603,8 @@
             animation: pulse-glow 3s ease-in-out infinite;
         }
 
-        /* Final connector is taller for emphasis */
         .flow-line-final {
-            height: 52px;
+            height: 26px;
             background: linear-gradient(
                 180deg,
                 rgba(200, 16, 46, 0.7) 0%,
@@ -517,18 +615,18 @@
                 0 0 24px rgba(200, 16, 46, 0.25);
         }
         @media (min-width: 768px) {
-            .flow-line-final { height: 60px; }
+            .flow-line-final { height: 30px; }
         }
 
         .flow-arrow {
             width: 0;
             height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 10px solid var(--red);
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 9px solid var(--red);
             filter: drop-shadow(0 0 6px rgba(200, 16, 46, 0.5));
             animation: arrow-pulse 3s ease-in-out infinite;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .flow-arrow-final {
             border-left-width: 10px;
@@ -537,15 +635,19 @@
             filter: drop-shadow(0 0 10px rgba(200, 16, 46, 0.6));
         }
 
-        /* Staggered delays create a top-to-bottom wave effect */
-        .flow-connector:nth-child(2) .flow-arrow  { animation-delay: 0s; }
-        .flow-connector:nth-child(2) .flow-line::after { animation-delay: 0s; }
-        .flow-connector:nth-child(4) .flow-arrow  { animation-delay: 0.6s; }
-        .flow-connector:nth-child(4) .flow-line::after { animation-delay: 0.6s; }
-        .flow-connector:nth-child(6) .flow-arrow  { animation-delay: 1.2s; }
-        .flow-connector:nth-child(6) .flow-line::after { animation-delay: 1.2s; }
-        .flow-connector:nth-child(8) .flow-arrow  { animation-delay: 1.8s; }
-        .flow-connector:nth-child(8) .flow-line::after { animation-delay: 1.8s; }
+        /* [R6] Tighter stagger (300ms intervals) for cohesive wave effect */
+        .flow-connector:nth-child(2) .flow-arrow,
+        .flow-connector:nth-child(2) .flow-line::after  { animation-delay: 0s; }
+        .flow-connector:nth-child(4) .flow-arrow,
+        .flow-connector:nth-child(4) .flow-line::after  { animation-delay: 0.3s; }
+        .flow-connector:nth-child(6) .flow-arrow,
+        .flow-connector:nth-child(6) .flow-line::after  { animation-delay: 0.6s; }
+        .flow-connector:nth-child(8) .flow-arrow,
+        .flow-connector:nth-child(8) .flow-line::after  { animation-delay: 0.9s; }
+        .flow-connector:nth-child(10) .flow-arrow,
+        .flow-connector:nth-child(10) .flow-line::after { animation-delay: 1.2s; }
+        .flow-connector:nth-child(12) .flow-arrow,
+        .flow-connector:nth-child(12) .flow-line::after { animation-delay: 1.5s; }
 
         @keyframes arrow-pulse {
             0%, 100% {
@@ -563,7 +665,6 @@
             50% { opacity: 1; }
         }
 
-        /* Respect reduced motion */
         @media (prefers-reduced-motion: reduce) {
             .flow-line::after { animation: none; opacity: 0.5; }
             .flow-arrow { animation: none; opacity: 0.7; }
@@ -577,12 +678,12 @@
             font-size: clamp(2rem, 5vw, 3.5rem);
             text-align: center;
             color: #fff;
-            margin-bottom: 32px;
+            margin-bottom: 16px;
             letter-spacing: 1px;
         }
         .section-heading span { color: var(--red); }
         @media (min-width: 768px) {
-            .section-heading { margin-bottom: 48px; }
+            .section-heading { margin-bottom: 24px; }
         }
 
         /* ================================================================
@@ -1033,6 +1134,7 @@
             .flow-node-final { border-color: var(--red); }
             .flow-label-final { color: var(--red); }
             .flow-check { box-shadow: none; border-color: var(--red); }
+            .flow-step-num { color: #666; opacity: 1; border-right-color: #ccc; }
             .flow-line { box-shadow: none; background: #ccc; }
             .flow-line::after { display: none; }
             .flow-arrow { filter: none; }
@@ -1089,18 +1191,19 @@
             </div>
 
             <!-- ============================================================
-                 VERTICAL FLOW CHART — The Journey
-                 ============================================================
-                 Replaces manifesto and logos. Shows the progression
-                 through the facility at a glance. Glowing red connectors
-                 match the page's visual identity.
-            -->
-            <div class="flow-chart" role="img" aria-label="Athlete journey: from medical clearance through CNSA, to rehabilitation and sports science through Architech Sports, to performance training and skill development through Architech Sports and Slay Basketball Academy, producing the premier athlete">
+                 THE PATHWAY — Vertical progression chart
+                 ============================================================ -->
+            <!-- [#6] Divider separating hero from pathway -->
+            <div class="pathway-divider" aria-hidden="true"></div>
+
+            <h2 class="section-heading">THE <span>PATHWAY</span></h2>
+
+            <div class="flow-chart" role="img" aria-label="Athlete pathway: from comprehensive medical evaluation, through body repair, sports science, strength and explosiveness training, to skill development, producing the premier athlete">
 
                 <!-- Step 1 -->
-                <div class="flow-node flow-node-top">
-                    <span class="flow-node-label">Carolina NeuroSurgery &amp; Spine Associates</span>
-                    <span class="flow-node-sub">Comprehensive Medical Evaluation</span>
+                <div class="flow-node flow-step-1">
+                    <span class="flow-step-num">01</span>
+                    <span class="flow-node-label">Comprehensive Medical Evaluation</span>
                 </div>
 
                 <div class="flow-connector" aria-hidden="true">
@@ -1109,9 +1212,9 @@
                 </div>
 
                 <!-- Step 2 -->
-                <div class="flow-node">
-                    <span class="flow-node-label">Architech Sports Rehab</span>
-                    <span class="flow-node-sub">Physical Therapy</span>
+                <div class="flow-node flow-step-2">
+                    <span class="flow-step-num">02</span>
+                    <span class="flow-node-label">Body Repair &amp; Maintenance</span>
                 </div>
 
                 <div class="flow-connector" aria-hidden="true">
@@ -1120,9 +1223,9 @@
                 </div>
 
                 <!-- Step 3 -->
-                <div class="flow-node">
-                    <span class="flow-node-label">Architech Sports Science</span>
-                    <span class="flow-node-sub">Biometrics &amp; Data</span>
+                <div class="flow-node flow-step-3">
+                    <span class="flow-step-num">03</span>
+                    <span class="flow-node-label">Sports Science Diagnostics</span>
                 </div>
 
                 <div class="flow-connector" aria-hidden="true">
@@ -1131,9 +1234,20 @@
                 </div>
 
                 <!-- Step 4 -->
-                <div class="flow-node">
-                    <span class="flow-node-label">Architech Sports Performance Program &amp; Slay Basketball Training</span>
-                    <span class="flow-node-sub">Strength &amp; Skill Development</span>
+                <div class="flow-node flow-step-4">
+                    <span class="flow-step-num">04</span>
+                    <span class="flow-node-label">Strength, Agility, &amp; Explosiveness</span>
+                </div>
+
+                <div class="flow-connector" aria-hidden="true">
+                    <div class="flow-line"></div>
+                    <div class="flow-arrow"></div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flow-node flow-step-5">
+                    <span class="flow-step-num">05</span>
+                    <span class="flow-node-label">Skill Development</span>
                 </div>
 
                 <div class="flow-connector" aria-hidden="true">
@@ -1144,7 +1258,7 @@
                 <!-- Final destination -->
                 <div class="flow-node flow-node-final">
                     <div class="flow-check" aria-hidden="true">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
                             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor"/>
                         </svg>
                     </div>
@@ -1209,7 +1323,7 @@
                             <span class="phase-number">02</span>
                             Restoration
                         </div>
-                        <h3>BODY MAINTENANCE.</h3>
+                        <h3>BODY REPAIR &amp; MAINTENANCE.</h3>
                         <div class="tile-bold">
                             <p>Fix what's broken. Protect what's not.</p>
                             <p>Clinical-grade therapy built around your body.</p>
@@ -1240,7 +1354,7 @@
                             <span class="phase-number">03</span>
                             Intelligence
                         </div>
-                        <h3>SPORTS SCIENCE.</h3>
+                        <h3>SPORTS SCIENCE DIAGNOSTICS.</h3>
                         <div class="tile-bold">
                             <p>We measure everything you can't see.</p>
                             <p>Force. Speed. Movement. All quantified.</p>
@@ -1277,13 +1391,13 @@
                             <span class="phase-number">04</span>
                             Engine
                         </div>
-                        <h3>STRENGTH AND POWER.</h3>
+                        <h3>STRENGTH, AGILITY, AND EXPLOSIVENESS.</h3>
                         <div class="tile-bold">
                             <p>Your data builds your program.</p>
                             <p>Translate raw strength into vertical pop and court speed.</p>
                         </div>
                         <p class="tile-detail">
-                            Your strength program is built directly from your Phase 03 lab data. Using Keiser Pneumatics and free weights, we target the specific outputs that matter for the combine and pro-level play: explosive power, vertical leap, and lateral quickness.
+                            Your strength program is built directly from your Phase 03 lab data. Using Keiser Pneumatics and free weights, the performance team targets the specific outputs that matter for the combine and pro-level play.
                         </p>
                     </div>
                     <ul class="spec-list" aria-label="Strength training capabilities">
@@ -1311,7 +1425,7 @@
                         <h3>SKILL DEVELOPMENT.</h3>
                         <div class="tile-bold">
                             <p>Athleticism means nothing without skill.</p>
-                            <p>This is where your body meets the basketball.</p>
+                            <p>Refine the details that separate good from great.</p>
                         </div>
                         <p class="tile-detail">
                             Slay Basketball Academy translates your physical gains into on-court production. NBA-experienced coaches refine your shooting mechanics, footwork, and decision-making. The goal: make sure your athleticism shows up in the stat sheet.
