@@ -330,16 +330,13 @@
             max-width: 1400px;
             margin: 0 auto 20px auto;
             position: relative;
-            /* Aspect ratio prevents layout shift while image loads */
-            aspect-ratio: 16 / 9;
             overflow: hidden;
-            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
         }
         .hero-image {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             display: block;
             filter: brightness(1.1) contrast(1.12);
         }
@@ -367,12 +364,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 0 24px;
+            padding: 8px 0 24px;
             position: relative;
             z-index: 2;
         }
         @media (min-width: 768px) {
-            .flow-chart { padding: 28px 0 32px; }
+            .flow-chart { padding: 12px 0 32px; }
         }
 
         /* [#7] Radial background glow behind the entire chart */
@@ -678,12 +675,12 @@
             font-size: clamp(2rem, 5vw, 3.5rem);
             text-align: center;
             color: #fff;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
             letter-spacing: 1px;
         }
         .section-heading span { color: var(--red); }
         @media (min-width: 768px) {
-            .section-heading { margin-bottom: 24px; }
+            .section-heading { margin-bottom: 12px; }
         }
 
         /* ================================================================
@@ -1118,6 +1115,11 @@
         @media print {
             body { background: #fff; color: #000; }
             .bg-canvas, .orb { display: none; }
+            .hero-image-container {
+                -webkit-mask-image: none;
+                mask-image: none;
+            }
+            .hero-image { filter: none; }
             .tile { background: #f5f5f5; border: 1px solid #ccc; color: #000; box-shadow: none; backdrop-filter: none; }
             .tile h3, .tile-bold p, .tile-phase { color: #000; }
             .tile-detail { color: #333; border-color: #ddd; }
@@ -1181,12 +1183,13 @@
             <div class="hero-image-container">
                 <img
                     src="combine_hero.png"
-                    alt="Athletes training in the Carolina Sports Medicine Center pre-draft combine facility"
+                    alt="Basketball athlete holding a ball, surrounded by holographic medical imaging, sports science data visualizations, and partner logos for Carolina NeuroSurgery and Spine, Slay Basketball Academy, and Architech Sports Physical Therapy"
                     class="hero-image"
-                    width="1400"
-                    height="788"
+                    width="2000"
+                    height="848"
                     loading="eager"
                     fetchpriority="high"
+                    decoding="async"
                 >
             </div>
 
