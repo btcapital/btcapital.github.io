@@ -1107,6 +1107,191 @@
         }
 
         /* ================================================================
+           REQUEST ACCESS — Inquiry form (FormSpree)
+           ================================================================
+           Premium glass-card form matching the site's existing aesthetic.
+           Inline placement after the Ecosystem tiles.
+        */
+        .access-section {
+            max-width: 640px;
+            margin: 60px auto 0;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        @media (min-width: 768px) {
+            .access-section { margin-top: 80px; }
+        }
+
+        .access-form {
+            background: var(--glass-bg);
+            border: 1px solid rgba(200, 16, 46, 0.2);
+            border-radius: 12px;
+            padding: 32px 24px 36px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow:
+                0 0 20px rgba(200, 16, 46, 0.06),
+                0 0 40px rgba(0, 0, 0, 0.3);
+        }
+        @media (min-width: 768px) {
+            .access-form { padding: 40px 36px 44px; }
+        }
+
+        .access-heading {
+            font-family: var(--f-head);
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            color: #fff;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .access-heading span { color: var(--red); }
+
+        .access-subtext {
+            font-family: var(--f-body);
+            font-size: clamp(0.82rem, 1.8vw, 0.9rem);
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            font-family: var(--f-tech);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-body);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--f-body);
+            font-size: 0.95rem;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: rgba(200, 16, 46, 0.5);
+            box-shadow: 0 0 12px rgba(200, 16, 46, 0.15);
+        }
+
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%23888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+        .form-select option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+        @media (min-width: 520px) {
+            .form-row { grid-template-columns: 1fr 1fr; }
+            .form-row .form-group { margin-bottom: 0; }
+        }
+
+        .form-submit {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            margin-top: 24px;
+            font-family: var(--f-tech);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            background: var(--red);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+            min-height: var(--touch-min);
+        }
+        .form-submit:hover {
+            background: var(--red-hover);
+            box-shadow: 0 0 20px rgba(200, 16, 46, 0.4);
+        }
+        .form-submit:active {
+            transform: scale(0.98);
+        }
+        .form-submit:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 3px;
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .form-success.is-visible {
+            display: block;
+        }
+        .form-success-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(200, 16, 46, 0.15);
+            border: 2px solid rgba(200, 16, 46, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: var(--red);
+        }
+        .form-success-heading {
+            font-family: var(--f-head);
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .form-success-text {
+            font-family: var(--f-body);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ================================================================
            PRINT STYLES
            ================================================================
            If an agent or prospect prints this page, they get readable content
@@ -1141,6 +1326,7 @@
             .flow-line::after { display: none; }
             .flow-arrow { filter: none; }
             h1 span { color: var(--red); }
+            .access-section { display: none; }
         }
     </style>
 </head>
@@ -1449,6 +1635,143 @@
 
             </div>
         </main>
+
+        <!-- ============================================================
+             REQUEST ACCESS — Inquiry Form
+             ============================================================
+             FormSpree-powered form. Replace YOUR_FORM_ID in the action
+             URL with your actual FormSpree endpoint ID.
+        -->
+        <section class="access-section" id="request-access">
+            <div class="access-form" id="access-form-container">
+
+                <!-- Form (hidden after successful submission) -->
+                <div id="access-form-wrap">
+                    <h2 class="access-heading">REQUEST <span>ACCESS</span></h2>
+                    <p class="access-subtext">Availability is limited. Submit your inquiry and our team will be in touch.</p>
+
+                    <form
+                        action="https://formspree.io/f/xbdawzlk"
+                        method="POST"
+                        id="access-form"
+                    >
+                        <!-- Honeypot field for spam prevention -->
+                        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+                        <div class="form-group">
+                            <label class="form-label" for="access-name">Full Name</label>
+                            <input
+                                type="text"
+                                id="access-name"
+                                name="name"
+                                class="form-input"
+                                placeholder="First and last name"
+                                required
+                                autocomplete="name"
+                            >
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="access-email">Email</label>
+                                <input
+                                    type="email"
+                                    id="access-email"
+                                    name="email"
+                                    class="form-input"
+                                    placeholder="you@example.com"
+                                    required
+                                    autocomplete="email"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="access-phone">Phone</label>
+                                <input
+                                    type="tel"
+                                    id="access-phone"
+                                    name="phone"
+                                    class="form-input"
+                                    placeholder="(555) 000-0000"
+                                    autocomplete="tel"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="access-level">Athlete Level</label>
+                            <select id="access-level" name="athlete_level" class="form-select" required>
+                                <option value="" disabled selected>Select level</option>
+                                <option value="NBA Draft Prospect">NBA Draft Prospect</option>
+                                <option value="Professional">Professional (NBA / Overseas)</option>
+                                <option value="College">College</option>
+                                <option value="High School / Prep">High School / Prep</option>
+                                <option value="Agent / Representative">Agent / Representative</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="access-message">Message <span style="font-weight:400;opacity:0.5;text-transform:none;letter-spacing:0">(optional)</span></label>
+                            <textarea
+                                id="access-message"
+                                name="message"
+                                class="form-textarea"
+                                placeholder="Tell us about the athlete and what you're looking for"
+                            ></textarea>
+                        </div>
+
+                        <button type="submit" class="form-submit" id="access-submit">
+                            Request Access
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Success message (shown after submission) -->
+                <div class="form-success" id="access-success">
+                    <div class="form-success-icon" aria-hidden="true">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <p class="form-success-heading">Request Received</p>
+                    <p class="form-success-text">Our team will review your inquiry and reach out within 24 hours.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <script>
+            (function() {
+                var form = document.getElementById('access-form');
+                if (!form) return;
+
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    var btn = document.getElementById('access-submit');
+                    btn.textContent = 'Submitting...';
+                    btn.disabled = true;
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    }).then(function(response) {
+                        if (response.ok) {
+                            document.getElementById('access-form-wrap').style.display = 'none';
+                            var success = document.getElementById('access-success');
+                            success.classList.add('is-visible');
+                        } else {
+                            btn.textContent = 'Something went wrong. Try again.';
+                            btn.disabled = false;
+                        }
+                    }).catch(function() {
+                        btn.textContent = 'Connection error. Try again.';
+                        btn.disabled = false;
+                    });
+                });
+            })();
+        </script>
 
         <!-- ============================================================
              FOOTER
